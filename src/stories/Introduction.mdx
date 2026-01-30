@@ -4,72 +4,59 @@ import { Meta } from "@storybook/addon-docs";
 
 <div className="sb-gold-container">
   <div className="sb-gold-hero">
-    <div className="hero-badge">v1.4.0 Professional</div>
-    # Gold Standard UI Library
+    <div className="hero-badge">v1.8.0 Tricky Template</div>
+    # QRENZA System
     <p className="hero-subtitle">
-      A premium, high-performance design system built for the Qrenza ecosystem. 
-      Engineered for tactile feedback, accessibility, and modern aesthetics.
+      A minimalist, high-performance design system for technical ecosystems. 
+      Built for speed, clarity, and tactile engineering excellence.
     </p>
   </div>
 
   <div className="sb-gold-grid">
     <div className="grid-card">
-      <h3>🚀 Quick Start</h3>
-      <div className="code-block">
-        <code>npm install github:dima-kacyuk/ui_story_book#v1.3.0</code>
+      <h3>⚪️ Pure Light Mode</h3>
+      <p>By default, the system now adopts a clean, Apple-inspired white mode. Designed for maximum readability and focus.</p>
+      <div className="badge-row">
+        <span className="badge-light">Default Theme</span>
       </div>
-      <p>Connect the library to your React project in seconds. Includes full TypeScript support and auto-building.</p>
     </div>
 
     <div className="grid-card">
-      <h3>🎨 Theme Engine</h3>
-      <p>Native dark mode support by default. Components automatically adapt to the <code>.dark</code> class on the HTML tag, or can be forced via the <code>theme</code> prop.</p>
-      <div className="badge-row">
-        <span className="badge-light">Light Mode</span>
-        <span className="badge-dark">Dark Mode</span>
+      <h3>🚀 v1.8.0 Workbench</h3>
+      <div className="code-block">
+        <code>npm install github:dima-kacyuk/ui_story_book#v1.8.0</code>
       </div>
+      <p>The "Tricky Template" release: A minimalist, powerful starting point for any technical dashboard.</p>
     </div>
   </div>
 
   <div className="sb-gold-section">
-    ## 🛠 Usage Instructions
+    ## 🛠 System Connection
+    
+    The Qrenza system is built on a **One-Time Connection** architecture. Connect the `UIProvider` at the root to initialize all global styles and state.
 
-    ### 1. Style Connection
-    Import the library CSS in your root file (e.g., `App.jsx` or `main.jsx`):
     ```javascript
-    import '@dima-kacyuk/ui-story-book/dist/index.css';
-    ```
-
-    ### 2. Component Import
-    All components are exported using a standardized lowercase prefix to avoid naming collisions with native elements:
-    ```javascript
-    import { djButton, djInput, djCheckbox } from '@dima-kacyuk/ui-story-book';
-    ```
-
-    ### 3. Tailwind Configuration
-    If you are using Tailwind in your project, ensure it scans the library components:
-    ```javascript
-    // tailwind.config.js
-    module.exports = {
-      content: [
-        "./src/**/*.{js,jsx,ts,tsx}",
-        "./node_modules/@dima-kacyuk/ui-story-book/dist/*.js"
-      ],
-      // ...
+    import { UIProvider } from '@qrenza/ui';
+    
+    export default function App() {
+      return (
+        <UIProvider>
+          <MyTechnicalApp />
+        </UIProvider>
+      );
     }
     ```
   </div>
 
   <div className="sb-gold-section">
-    ## 📂 Component Directory
+    ## 📂 Component Manifest
 
-    | Category | Components |
+    | Tier | Representative Primitives |
     | :--- | :--- |
-    | **Foundation** | `djButton`, `djCard`, `djBadge` |
-    | **Forms** | `djInput`, `djCheckbox`, `djRadio`, `djSelect`, `djSwitch`, `djTextarea` |
-    | **Data** | `djAvatar` |
-    | **Layout** | `djModal`, `djTabs`, `djProgress` *(v1.4.0)* |
-    | **Pickers** | `djDatePicker` *(v1.4.0)* |
+    | **Foundation** | `djButton`, `djCard`, `djBadge`, `djAlert` |
+    | **Interactive** | `djTabs`, `djModal`, `djProgress`, `djAccordion` |
+    | **Form Control** | `djInput`, `djCheckbox`, `djDatePicker` |
+    | **Layout** | `djHeader`, `djFooter` *(Optional)* |
   </div>
 </div>
 
