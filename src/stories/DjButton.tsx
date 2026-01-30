@@ -37,9 +37,26 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   leftIcon?: ReactNode;
   /**
+   * Custom classes for the left icon container.
+   */
+  leftIconClassName?: string;
+  /**
    * Icon element to display after the button text.
    */
   rightIcon?: ReactNode;
+  /**
+   * Custom classes for the right icon container.
+   */
+  rightIconClassName?: string;
+  /**
+   * Custom classes for the loading spinner.
+   */
+  spinnerClassName?: string;
+  /**
+   * Content justification.
+   * @default "center"
+   */
+  justify?: "start" | "center" | "end" | "between";
   /**
    * If true, the button will take up the full width of its container.
    */
@@ -49,13 +66,22 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   pill?: boolean;
   /**
+   * Corner radius override.
+   */
+  rounded?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
+  /**
+   * Shadow elevation.
+   * @default "md"
+   */
+  shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
+  /**
    * If true, renders as a child element (Slot pattern).
    */
   asChild?: boolean;
 }
 
 /**
- * DjButton is a polymorphic, accessible button component with variants and states.
+ * DjButton is a polymorphic, accessible button component with advanced customization options.
  */
 export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
   (
@@ -65,9 +91,15 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
       size = "md",
       isLoading = false,
       leftIcon,
+      leftIconClassName,
       rightIcon,
+      rightIconClassName,
+      spinnerClassName,
+      justify = "center",
       isFullWidth = false,
       pill = false,
+      rounded,
+      shadow: shadowProp,
       asChild = false,
       children,
       disabled,
@@ -77,9 +109,9 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    // Base styles: adaptive (light/dark), better hover/active, nicer focus ring
+    // Base styles: tactile transitions and adaptive focus
     const baseStyles =
-      "group inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold " +
+      "group inline-flex items-center whitespace-nowrap text-sm font-semibold " +
       "select-none transition-all duration-300 ease-in-out " +
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
       "ring-offset-white dark:ring-offset-slate-950 " +
@@ -87,18 +119,26 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
       "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 " +
       "active:scale-[0.97]";
 
-    // Premium hover behavior: lift + glow + brightness adjustment
-    const hoverEffects = "hover:-translate-y-0.5 hover:brightness-110";
+    // Justification map
+    const justifications = {
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end",
+      between: "justify-between",
+    };
+
+    // Premium hover behavior with lift and brightness
+    const hoverEffects = "hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0";
 
     const variants: Record<NonNullable<DjButtonProps["variant"]>, string> = {
       primary:
-        "bg-indigo-600 text-white border-transparent " +
+        "bg-indigo-600 text-white border border-transparent " +
         "shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 " +
         "focus-visible:ring-indigo-600 " +
         hoverEffects,
 
       secondary:
-        "bg-slate-200 text-slate-900 border-transparent " +
+        "bg-slate-100 text-slate-900 border border-transparent " +
         "dark:bg-slate-800 dark:text-slate-100 " +
         "shadow-sm hover:shadow-md " +
         "focus-visible:ring-slate-400 " +
@@ -116,28 +156,33 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
         "dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 " +
         "focus-visible:ring-slate-400",
 
+      // Semantic variants refined: Text color matching shadow color on tinted background
       danger:
-        "bg-rose-600 text-white border-transparent " +
-        "shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 " +
+        "bg-rose-50 text-rose-600 border border-rose-100 " +
+        "shadow-lg shadow-rose-600/20 hover:shadow-rose-600/30 " +
+        "dark:bg-rose-950/30 dark:border-rose-900/50 " +
         "focus-visible:ring-rose-600 " +
         hoverEffects,
 
       success:
-        "bg-emerald-600 text-white border-transparent " +
-        "shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 " +
+        "bg-emerald-50 text-emerald-600 border border-emerald-100 " +
+        "shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/30 " +
+        "dark:bg-emerald-950/30 dark:border-emerald-900/50 " +
         "focus-visible:ring-emerald-600 " +
         hoverEffects,
 
       warning:
-        "bg-amber-500 text-slate-900 border-transparent " +
-        "shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 " +
-        "focus-visible:ring-amber-500 " +
+        "bg-amber-50 text-amber-600 border border-amber-100 " +
+        "shadow-lg shadow-amber-600/20 hover:shadow-amber-600/30 " +
+        "dark:bg-amber-950/30 dark:border-amber-900/50 " +
+        "focus-visible:ring-amber-600 " +
         hoverEffects,
 
       info:
-        "bg-sky-500 text-white border-transparent " +
-        "shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 " +
-        "focus-visible:ring-sky-500 " +
+        "bg-sky-50 text-sky-600 border border-sky-100 " +
+        "shadow-lg shadow-sky-600/20 hover:shadow-sky-600/30 " +
+        "dark:bg-sky-950/30 dark:border-sky-900/50 " +
+        "focus-visible:ring-sky-600 " +
         hoverEffects,
 
       link:
@@ -148,17 +193,37 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
       glass:
         "bg-white/10 text-white border border-white/20 backdrop-blur-xl " +
         "hover:bg-white/20 hover:border-white/30 " +
-        "shadow-xl shadow-black/10 " +
+        "shadow-xl shadow-black/20 " +
         "focus-visible:ring-white/50 " +
         hoverEffects,
     };
 
     const sizes: Record<NonNullable<DjButtonProps["size"]>, string> = {
-      sm: "h-8 px-3 text-xs",
-      md: "h-10 px-4 py-2",
-      lg: "h-12 px-8 text-base",
-      xl: "h-14 px-10 text-lg",
+      sm: "h-8 px-3 text-xs gap-1.5",
+      md: "h-10 px-4 py-2 gap-2",
+      lg: "h-12 px-8 text-base gap-2.5",
+      xl: "h-14 px-10 text-lg gap-3",
       icon: "h-10 w-10 p-0",
+    };
+
+    const roundedStyles = {
+      none: "rounded-none",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      "2xl": "rounded-2xl",
+      "3xl": "rounded-3xl",
+      full: "rounded-full",
+    };
+
+    const shadowStyles = {
+      none: "shadow-none hover:shadow-none",
+      sm: "shadow-sm",
+      md: "shadow-md",
+      lg: "shadow-lg",
+      xl: "shadow-xl",
+      "2xl": "shadow-2xl",
     };
 
     return (
@@ -166,10 +231,12 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
         ref={ref}
         className={cn(
           baseStyles,
+          justifications[justify],
           variants[variant],
           sizes[size],
           isFullWidth && "w-full",
-          pill ? "rounded-full" : "rounded-xl",
+          pill ? "rounded-full" : (rounded ? roundedStyles[rounded] : "rounded-xl"),
+          shadowProp && shadowStyles[shadowProp],
           className
         )}
         disabled={disabled || isLoading}
@@ -178,7 +245,7 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
         {isLoading ? (
           <>
             <svg
-              className="animate-spin -ml-1 mr-1 h-4 w-4"
+              className={cn("animate-spin h-4 w-4", spinnerClassName)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -198,13 +265,24 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
-            {children}
+            <span className="opacity-0">{children}</span> 
+            <span className="absolute">Loading...</span>
+            {/* Note: Absolute positioning for 'Loading...' helps keep button width stable if needed, 
+                but here we just dim the children or show them. I'll stick to prepending. */}
           </>
         ) : (
           <>
-            {!asChild && leftIcon}
+            {!asChild && leftIcon && (
+              <span className={cn("inline-flex items-center", leftIconClassName)}>
+                {leftIcon}
+              </span>
+            )}
             {children}
-            {!asChild && rightIcon}
+            {!asChild && rightIcon && (
+              <span className={cn("inline-flex items-center", rightIconClassName)}>
+                {rightIcon}
+              </span>
+            )}
           </>
         )}
       </Comp>
