@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
-/* 
-  Ensuring the library uses a consistent, modern font stack 
-  that matches the "Storybook" aesthetic.
-*/
 :where(.group) {
   font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+/* Ensure components default to a dark-friendly baseline */
+:root {
+  color-scheme: dark;
 }
