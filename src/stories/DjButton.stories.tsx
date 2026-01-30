@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DjButton } from "./DjButton";
-import React from "react";
 import { Star, ArrowRight } from "lucide-react";
 
 /**
