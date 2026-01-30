@@ -1,7 +1,7 @@
 {
   "name": "@dima-kacyuk/ui-story-book",
   "private": false,
-  "version": "1.5.2",
+  "version": "1.5.3",
   "type": "module",
   "sideEffects": false,
   "files": [
@@ -20,12 +20,12 @@
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006 --host 0.0.0.0",
     "build-storybook": "storybook build --output-dir storybook-static",
-    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run build",
-    "release": "npm version patch && git push origin main --tags",
-    "release:minor": "npm version minor && git push origin main --tags",
-    "release:major": "npm version major && git push origin main --tags",
+    "deploy-storybook": "yarn run build-storybook && gh-pages -d storybook-static",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn build",
+    "release": "yarn version patch && git push origin main --tags",
+    "release:minor": "yarn version minor && git push origin main --tags",
+    "release:major": "yarn version major && git push origin main --tags",
     "generate": "node scripts/scaffold.js"
   },
   "dependencies": {
