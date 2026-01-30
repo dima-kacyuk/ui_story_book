@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, Sun, Moon } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -17,13 +17,21 @@ export interface HeaderProps {
    */
   navItems?: { label: string; href: string }[];
   /**
-   * Optional theme override
+   * Optional theme override (not for switching, but for static styling)
    */
   theme?: 'light' | 'dark';
+  /**
+   * Current active theme (for toggle state)
+   */
+  currentTheme?: 'light' | 'dark';
+  /**
+   * Callback for theme toggle
+   */
+  onThemeToggle?: () => void;
 }
 
 /**
- * DjHeader is a premium, responsive navigation bar with mobile menu support.
+ * DjHeader is a premium, responsive navigation bar with mobile menu support and theme toggle.
  */
 export const Header = ({
   logo = <span className="text-2xl font-black tracking-tighter">GOLDEN<span className="text-indigo-600 italic">STANDARD</span></span>,
@@ -33,13 +41,15 @@ export const Header = ({
     { label: "Community", href: "#" },
     { label: "Pricing", href: "#" }
   ],
-  theme
+  theme,
+  currentTheme = 'dark',
+  onThemeToggle
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className={cn(
-      "sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 transition-colors",
+      "sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 transition-colors duration-500",
       theme === 'dark' && 'dark', theme === 'light' && 'light'
     )}>
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -65,6 +75,16 @@ export const Header = ({
 
         {/* Right Actions */}
         <div className="flex items-center gap-4">
+          {/* Theme Toggle */}
+          {onThemeToggle && (
+            <button 
+              onClick={onThemeToggle}
+              className="p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-all active:scale-95"
+            >
+              {currentTheme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          )}
+
           <div className="hidden lg:flex items-center gap-2 text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors mr-2">
              <Globe size={18} />
              <span className="text-sm font-bold uppercase tracking-widest">EN</span>
@@ -104,7 +124,19 @@ export const Header = ({
               </a>
             ))}
             <div className="flex flex-col gap-4 pt-4">
-               <button className="w-full h-14 rounded-2xl bg-slate-100 dark:bg-white/5 font-black text-slate-950 dark:text-white text-lg">
+               {onThemeToggle && (
+                 <button 
+                   onClick={() => {
+                     onThemeToggle();
+                     setIsOpen(false);
+                   }}
+                   className="w-full h-14 rounded-2xl bg-slate-50 dark:bg-white/5 font-black text-slate-900 dark:text-white text-lg flex items-center justify-center gap-3"
+                 >
+                   {currentTheme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+                   Switch to {currentTheme === 'dark' ? 'Light' : 'Dark'} Mode
+                 </button>
+               )}
+               <button className="w-full h-14 rounded-2xl bg-slate-100 dark:bg-white/10 font-black text-slate-950 dark:text-white text-lg">
                   Sign In
                </button>
                <button className="w-full h-14 rounded-2xl bg-slate-900 dark:bg-indigo-600 text-white font-black text-lg">
