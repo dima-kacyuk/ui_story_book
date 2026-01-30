@@ -132,9 +132,9 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
 
     const variants: Record<NonNullable<DjButtonProps["variant"]>, string> = {
       primary:
-        "bg-indigo-600 text-white border border-transparent " +
-        "shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 " +
-        "focus-visible:ring-indigo-600 " +
+        "bg-blue-600 text-white border border-transparent " +
+        "shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 " +
+        "focus-visible:ring-blue-600 " +
         hoverEffects,
 
       secondary:
@@ -186,9 +186,9 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
         hoverEffects,
 
       link:
-        "bg-transparent text-indigo-600 underline-offset-4 hover:underline " +
-        "dark:text-indigo-400 " +
-        "focus-visible:ring-indigo-500 shadow-none active:scale-100",
+        "bg-transparent text-blue-600 underline-offset-4 hover:underline " +
+        "dark:text-blue-400 " +
+        "focus-visible:ring-blue-500 shadow-none active:scale-100",
 
       glass:
         "bg-white/10 text-white border border-white/20 backdrop-blur-xl " +
