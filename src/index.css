@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 /* 
-  We only keep the Tailwind import here. 
-  Global styles like :root or button selectors are removed to avoid polluting the consumer's environment.
+  Ensuring the library uses a consistent, modern font stack 
+  that matches the "Storybook" aesthetic.
 */
+:where(.group) {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
