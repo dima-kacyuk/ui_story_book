@@ -267,8 +267,6 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
             </svg>
             <span className="opacity-0">{children}</span> 
             <span className="absolute">Loading...</span>
-            {/* Note: Absolute positioning for 'Loading...' helps keep button width stable if needed, 
-                but here we just dim the children or show them. I'll stick to prepending. */}
           </>
         ) : (
           <>

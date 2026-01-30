@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within, fn } from "@storybook/test";
-import { DjButton } from "./DjButton";
+import { DjButton, type DjButtonProps } from "./DjButton";
 import {
   ArrowRight,
   Trash2,
@@ -99,7 +99,7 @@ export const Primary: Story = {
  * Refined semantic variants showing the matching text and shadow scheme.
  */
 export const SemanticShowcase: Story = {
-    render: (args) => (
+    render: (args: DjButtonProps) => (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4">
         <DjButton {...args} variant="success" leftIcon={<CheckCircle2 />}>Success Action</DjButton>
         <DjButton {...args} variant="danger" leftIcon={<Trash2 />}>Danger Action</DjButton>
@@ -120,7 +120,7 @@ export const Justification: Story = {
         children: "Settings Panel",
         className: "w-[300px]",
     },
-    render: (args) => (
+    render: (args: DjButtonProps) => (
         <div className="flex flex-col gap-4 w-[350px]">
             <DjButton {...args} justify="start">Start (Left)</DjButton>
             <DjButton {...args} justify="center">Center (Default)</DjButton>
@@ -134,7 +134,7 @@ export const Justification: Story = {
  * Override the default rounding with the `rounded` prop.
  */
 export const CustomRounding: Story = {
-  render: (args) => (
+  render: (args: DjButtonProps) => (
     <div className="flex flex-wrap items-center gap-4">
       <DjButton {...args} rounded="none">Sharp</DjButton>
       <DjButton {...args} rounded="md">Square-ish</DjButton>
@@ -152,7 +152,7 @@ export const ShadowElevations: Story = {
     args: {
         variant: "secondary",
     },
-    render: (args) => (
+    render: (args: DjButtonProps) => (
       <div className="flex flex-wrap items-center gap-6">
         <DjButton {...args} shadow="none">Flat</DjButton>
         <DjButton {...args} shadow="sm">Small</DjButton>
@@ -173,7 +173,7 @@ export const LargeHero: Story = {
 };
 
 export const GlassEffect: Story = {
-  render: (args) => (
+  render: (args: DjButtonProps) => (
     <div className="rounded-3xl p-20 bg-gradient-to-br from-indigo-900 via-purple-800 to-rose-700 shadow-2xl">
       <DjButton {...args} variant="glass" size="lg" leftIcon={<ExternalLink />}>
         Explore Universe
@@ -183,7 +183,7 @@ export const GlassEffect: Story = {
 };
 
 export const IconButtons: Story = {
-  render: (args) => (
+  render: (args: DjButtonProps) => (
     <div className="flex items-center gap-4">
       <DjButton {...args} size="icon" variant="outline" aria-label="Save"><Save /></DjButton>
       <DjButton {...args} size="icon" variant="danger" aria-label="Delete"><Trash2 /></DjButton>
@@ -205,7 +205,7 @@ export const InteractiveTests: Story = {
     variant: "primary",
     size: "lg",
   },
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement, args }: any) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole("button", { name: /Test Logic/i });
 
