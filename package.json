@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006 --host 0.0.0.0",
     "build-storybook": "storybook build --output-dir storybook-static",
-    "deploy-storybook": "export REPO=$(basename -s .git $(git config --get remote.origin.url)); export STORYBOOK_BASE_PATH=/$REPO/; npm run build-storybook && gh-pages -d storybook-static",
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },

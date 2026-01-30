@@ -22,8 +22,8 @@ const config: StorybookConfig = {
   async viteFinal(viteConfig) {
     const { mergeConfig } = await import("vite");
 
-    const base = process.env.STORYBOOK_BASE_PATH || "/";
-    console.log(`Building Storybook with base path: ${base}`);
+    const base = "./";
+    console.log(`Building Storybook with relative paths (base: ${base})`);
 
     return mergeConfig(viteConfig, {
       base,
