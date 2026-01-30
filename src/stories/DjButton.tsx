@@ -137,10 +137,10 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
 
     const variants: Record<NonNullable<DjButtonProps["variant"]>, string> = {
       primary:
-        "bg-white text-slate-900 border border-slate-200 " +
-        "shadow-sm hover:shadow-md " +
-        "dark:bg-slate-950 dark:text-white dark:border-slate-800 " +
-        "dark:shadow-lg dark:shadow-black/20 " +
+        "bg-slate-950 text-white border border-transparent " +
+        "shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 " +
+        "dark:bg-white dark:text-slate-950 dark:border-transparent " +
+        "dark:shadow-2xl dark:shadow-black/40 " +
         "focus-visible:ring-slate-400 " +
         hoverEffects,
 
