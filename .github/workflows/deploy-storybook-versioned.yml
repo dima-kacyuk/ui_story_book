@@ -1,0 +1,38 @@
+name: Deploy Versioned Storybook
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build-storybook
+
+      - name: Prepare folders
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          mkdir -p publish/$TAG
+          mkdir -p publish/latest
+          cp -R storybook-static/* publish/$TAG/
+          cp -R storybook-static/* publish/latest/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./publish
+          keep_files: true
