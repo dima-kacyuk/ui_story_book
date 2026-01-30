@@ -1,3 +1,4 @@
+import "./index.css";
 export { DjButton as djButton } from "./stories/DjButton";
 export { Header } from "./stories/Header";
 export { Page } from "./stories/Page";
