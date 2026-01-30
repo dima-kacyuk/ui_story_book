@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card, CardHeader, CardBody, CardFooter } from "./Card";
 import { Badge } from "./Badge";
-import { djButton as Button } from "./DjButton";
-import React from "react";
+import { DjButton as Button } from "./DjButton";
 
 const meta = {
   title: "UI/djCard",

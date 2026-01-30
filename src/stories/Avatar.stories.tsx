@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar } from "./Avatar";
-import React from "react";
 
 const meta = {
   title: "UI/djAvatar",
