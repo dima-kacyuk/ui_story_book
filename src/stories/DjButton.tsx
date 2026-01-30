@@ -75,6 +75,10 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
   /**
+   * Explicit theme override.
+   */
+  theme?: "light" | "dark";
+  /**
    * If true, renders as a child element (Slot pattern).
    */
   asChild?: boolean;
@@ -100,6 +104,7 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
       pill = false,
       rounded,
       shadow: shadowProp,
+      theme,
       asChild = false,
       children,
       disabled,
@@ -237,6 +242,8 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
           isFullWidth && "w-full",
           pill ? "rounded-full" : (rounded ? roundedStyles[rounded] : "rounded-xl"),
           shadowProp && shadowStyles[shadowProp],
+          theme === "dark" && "dark",
+          theme === "light" && "light",
           className
         )}
         disabled={disabled || isLoading}
