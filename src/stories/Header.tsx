@@ -1,6 +1,6 @@
 
 
-import { Button } from './Button';
+import { DjButton } from './DjButton';
 import './header.css';
 
 type User = {
@@ -42,12 +42,12 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             <span className="welcome">
               Welcome, <b>{user.name}</b>!
             </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
+            <DjButton size="sm" onClick={onLogout}>Log out</DjButton>
           </>
         ) : (
           <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
+            <DjButton size="sm" onClick={onLogin}>Log in</DjButton>
+            <DjButton variant="primary" size="sm" onClick={onCreateAccount}>Sign up</DjButton>
           </>
         )}
       </div>
