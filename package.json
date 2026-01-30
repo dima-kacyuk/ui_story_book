@@ -25,7 +25,8 @@
     "prepublishOnly": "npm run build",
     "release": "npm version patch && git push origin main --tags",
     "release:minor": "npm version minor && git push origin main --tags",
-    "release:major": "npm version major && git push origin main --tags"
+    "release:major": "npm version major && git push origin main --tags",
+    "generate": "node scripts/scaffold.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
