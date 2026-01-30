@@ -8,5 +8,7 @@ export default defineConfig({
   clean: true,
   splitting: false,
   target: "es2022",
+  minify: true,
+  treeshake: true,
   external: ["react", "react-dom"]
 });

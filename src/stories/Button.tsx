@@ -1,14 +1,14 @@
-import React from "react";
+import type { ButtonHTMLAttributes, FC } from "react";
 import "./button.css";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   primary?: boolean;
   size?: "small" | "medium" | "large";
   backgroundColor?: string;
   label: string;
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   primary = false,
   size = "medium",
   backgroundColor,
