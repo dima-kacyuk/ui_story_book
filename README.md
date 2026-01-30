@@ -11,11 +11,11 @@ A premium, highly-customizable React component library built with **TypeScript**
 Add the library to your project from GitHub:
 
 ```bash
-npm install github:dima-kacyuk/ui_story_book#v1.1.1
+npm install github:dima-kacyuk/ui_story_book#v1.1.4
 ```
 
 > [!TIP]
-> Use specific tags (e.g., `#v1.1.1`) to ensure stable builds. Avoid using `#main` in production.
+> Use specific tags (e.g., `#v1.1.4`) to ensure stable builds. Avoid using `#main` in production.
 
 ### Setup
 
