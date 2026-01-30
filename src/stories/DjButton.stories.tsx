@@ -1,19 +1,28 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within, fn } from "@storybook/test"; // Interaction testing imports
+import { expect, userEvent, within, fn } from "@storybook/test";
 import { DjButton } from "./DjButton";
-import { Mail, ArrowRight, Trash2, Save, ExternalLink } from "lucide-react";
+import {
+  Mail,
+  ArrowRight,
+  Trash2,
+  Save,
+  ExternalLink,
+  CheckCircle2,
+  AlertTriangle,
+  Info,
+} from "lucide-react";
 
 /**
  * # DjButton Component
- * 
- * The `DjButton` is the primary action component in our application. 
- * It supports multiple variants, sizes, and polymorphism (rendering as different elements).
- * 
- * ## Best Practices
- * - Use **Primary** for the main action on a page.
- * - Use **Secondary** or **Outline** for alternative actions.
- * - Use **Ghost** for subtle actions.
- * - Use **Danger** for destructive actions.
+ *
+ * The `DjButton` is a premium, versatile button component designed for modern web applications.
+ * It features sophisticated transitions, semantic color palettes, and adaptive styling for both light and dark modes.
+ *
+ * ## Features
+ * - **Polymorphic**: Uses the Slot pattern for element composition.
+ * - **Tactile Feedback**: Smooth hover lift, active scale, and subtle glows.
+ * - **Accessible**: Complies with standard button interactions and focus states.
+ * - **Adaptive**: Automatically adjusts colors and contrast for dark mode.
  */
 const meta = {
   title: "UI/DjButton",
@@ -21,16 +30,28 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-        description: {
-            component: "A highly customizable button component supporting polymorphism, icons, and loading states.",
-        },
+      description: {
+        component:
+          "A refined button component with high-performance aesthetics and full accessibility support.",
+      },
     },
   },
   tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary", "outline", "ghost", "danger", "link", "glass"],
+      options: [
+        "primary",
+        "secondary",
+        "outline",
+        "ghost",
+        "danger",
+        "success",
+        "warning",
+        "info",
+        "link",
+        "glass",
+      ],
       description: "Visual style of the button",
     },
     size: {
@@ -41,11 +62,12 @@ const meta = {
     isLoading: { control: "boolean" },
     disabled: { control: "boolean" },
     pill: { control: "boolean" },
-    asChild: { 
-        control: "boolean",
-        description: "If true, merges props onto the child element (e.g., for composition with <a> tags)." 
+    asChild: {
+      control: "boolean",
+      description:
+        "If true, merges props onto the child element (e.g., for composition with <a> tags).",
     },
-    onClick: { action: "clicked" }, // Automatically logs actions
+    onClick: { action: "clicked" },
   },
   args: {
     children: "Button",
@@ -54,111 +76,130 @@ const meta = {
     isLoading: false,
     disabled: false,
     pill: false,
-    onClick: fn(), 
+    onClick: fn(),
   },
 } satisfies Meta<typeof DjButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// --- Basic Stories ---
+// --- Showcase Stories ---
 
+/**
+ * The standard brand action variant. Featuring a rich indigo color and soft glow.
+ */
 export const Primary: Story = {
-  args: { variant: "primary", children: "Primary Action" },
+  args: { variant: "primary", children: "Get Started" },
 };
 
+/**
+ * Used for less prominent actions. Adapts beautifully to dark mode.
+ */
 export const Secondary: Story = {
-  args: { variant: "secondary", children: "Secondary Action" },
+  args: { variant: "secondary", children: "Learn More" },
 };
 
+/**
+ * A clean, bordered variant for secondary actions or toolbar items.
+ */
 export const Outline: Story = {
-  args: { variant: "outline", children: "Outline Action" },
+  args: { variant: "outline", children: "Edit Profile" },
 };
 
-export const Danger: Story = {
-  args: { 
-      variant: "danger", 
-      children: "Delete Item", 
-      leftIcon: <Trash2 />, 
-      pill: true 
+/**
+ * A high-transparency variant that works perfectly on colorful backgrounds.
+ */
+export const Glass: Story = {
+  render: (args) => (
+    <div className="rounded-3xl p-16 bg-gradient-to-tr from-indigo-900 via-purple-800 to-rose-700 shadow-2xl">
+      <DjButton {...args} variant="glass" size="lg" leftIcon={<ExternalLink />}>
+        Join the Future
+      </DjButton>
+    </div>
+  ),
+};
+
+// --- Semantic Variants ---
+
+export const Success: Story = {
+  args: {
+    variant: "success",
+    children: "Payment Successful",
+    leftIcon: <CheckCircle2 />,
   },
 };
 
-// --- Feature Spotlights ---
+export const Warning: Story = {
+  args: {
+    variant: "warning",
+    children: "System Warning",
+    leftIcon: <AlertTriangle />,
+  },
+};
+
+export const InfoAction: Story = {
+  args: {
+    variant: "info",
+    children: "New Notification",
+    leftIcon: <Info />,
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    variant: "danger",
+    children: "Delete Workspace",
+    leftIcon: <Trash2 />,
+    pill: true,
+  },
+};
+
+// --- Layouts and States ---
 
 /**
- * Use the `xl` size and `pill` prop for a prominent, modern look.
+ * Compare all sizes from extra-large heroes to small utility buttons.
  */
-export const LargePill: Story = {
-    args: {
-        size: "xl",
-        pill: true,
-        children: "Get Started Now",
-        rightIcon: <ArrowRight />,
-    },
+export const AllSizes: Story = {
+  render: (args) => (
+    <div className="flex flex-col items-center gap-6">
+      <DjButton {...args} size="xl" pill>Extra Large Hero</DjButton>
+      <DjButton {...args} size="lg">Large Button</DjButton>
+      <DjButton {...args} size="md">Medium Base</DjButton>
+      <DjButton {...args} size="sm">Small Utility</DjButton>
+    </div>
+  ),
+};
+
+export const InteractiveTests: Story = {
+  args: {
+    children: "Test Interaction",
+    variant: "primary",
+    size: "lg",
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: /Test Interaction/i });
+
+    await expect(button).toBeInTheDocument();
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalled();
+  },
 };
 
 /**
- * **Polymorphism in Action**: This button is actually an `<a>` tag!
- * Inspect the DOM to verify. This is achieved using the `asChild` prop 
- * and passing an `<a>` element as a child.
+ * A gallery showing all semantic and visual variants side-by-side.
  */
-export const AsLink: Story = {
-    args: {
-        asChild: true,
-        variant: "link",
-        children: (
-            <a href="https://google.com" target="_blank" rel="noreferrer" className="flex items-center gap-2">
-                Visit Google <ExternalLink className="size-4" />
-            </a>
-        ),
-    },
-};
-
-export const WithIcons: Story = {
-    render: (args) => (
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
-             <DjButton {...args} leftIcon={<Mail />}>Email Me</DjButton>
-             <DjButton {...args} rightIcon={<ArrowRight />}>Next Step</DjButton>
-        </div>
-        <div className="flex items-center gap-4">
-            <DjButton {...args} size="icon" variant="outline"><Save /></DjButton>
-            <DjButton {...args} size="icon" variant="ghost" className="text-red-500 hover:text-red-600 hover:bg-red-50"><Trash2 /></DjButton>
-        </div>
-      </div>
-    ),
-};
-
-export const LoadingState: Story = {
-    args: {
-        isLoading: true,
-        children: "Processing...",
-    },
-};
-
-// --- Interaction Tests ---
-
-/**
- * This story performs an automated interaction test within Storybook.
- * It verifies that the button is clickable and fires the handler.
- */
-export const InteractiveTest: Story = {
-    args: {
-        children: "Click to Test",
-        variant: "primary",
-    },
-    play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement);
-        const button = canvas.getByRole("button", { name: /Click to Test/i });
-        
-        // Assert button is visible
-        await expect(button).toBeInTheDocument();
-        
-        // Simulate click
-        await userEvent.click(button);
-        
-        // Assert onClick handler was called
-        await expect(args.onClick).toHaveBeenCalled();
-    },
+export const VariantGallery: Story = {
+  render: (args) => (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 p-4">
+      <DjButton {...args} variant="primary">Primary</DjButton>
+      <DjButton {...args} variant="secondary">Secondary</DjButton>
+      <DjButton {...args} variant="outline">Outline</DjButton>
+      <DjButton {...args} variant="ghost">Ghost</DjButton>
+      <DjButton {...args} variant="success">Success</DjButton>
+      <DjButton {...args} variant="warning">Warning</DjButton>
+      <DjButton {...args} variant="info">Info</DjButton>
+      <DjButton {...args} variant="danger">Danger</DjButton>
+    </div>
+  ),
 };

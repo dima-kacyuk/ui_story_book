@@ -12,7 +12,17 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Defines the visual style of the button.
    * @default "primary"
    */
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger" | "link" | "glass";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "outline"
+    | "ghost"
+    | "danger"
+    | "success"
+    | "warning"
+    | "info"
+    | "link"
+    | "glass";
   /**
    * Controls the size of the button.
    * @default "md"
@@ -39,15 +49,13 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   pill?: boolean;
   /**
-   * If true, renders as a child element (Slot pattern). 
-   * Useful for using the button as a link (<a>) or with other frameworks like Next.js Link.
+   * If true, renders as a child element (Slot pattern).
    */
   asChild?: boolean;
 }
 
 /**
- * **DjButton** is a polymorphic, fully accessible button component with multiple variants and states.
- * It follows modern design principles and supports the Slot pattern for composition.
+ * DjButton is a polymorphic, accessible button component with variants and states.
  */
 export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
   (
@@ -67,30 +75,90 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
     },
     ref
   ) => {
-    // Determine the component to render (Button or Slot)
     const Comp = asChild ? Slot : "button";
 
-    // Design System Tokens
-    const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98]";
-    
-    // Variant Styles
-    const variants = {
-      primary: "bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg border border-transparent",
-      secondary: "bg-blue-50 text-blue-900 hover:bg-blue-100 border border-transparent",
-      outline: "border border-gray-200 bg-white hover:bg-gray-50 hover:text-gray-900 text-gray-700 shadow-sm",
-      ghost: "hover:bg-gray-100 hover:text-gray-900 text-gray-600",
-      danger: "bg-red-600 text-white hover:bg-red-700 shadow-md hover:shadow-lg border border-transparent",
-      link: "text-blue-600 underline-offset-4 hover:underline shadow-none active:scale-100",
-      glass: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 shadow-sm",
+    // Base styles: adaptive (light/dark), better hover/active, nicer focus ring
+    const baseStyles =
+      "group inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold " +
+      "select-none transition-all duration-300 ease-in-out " +
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
+      "ring-offset-white dark:ring-offset-slate-950 " +
+      "disabled:pointer-events-none disabled:opacity-50 " +
+      "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 " +
+      "active:scale-[0.97]";
+
+    // Premium hover behavior: lift + glow + brightness adjustment
+    const hoverEffects = "hover:-translate-y-0.5 hover:brightness-110";
+
+    const variants: Record<NonNullable<DjButtonProps["variant"]>, string> = {
+      primary:
+        "bg-indigo-600 text-white border-transparent " +
+        "shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 " +
+        "focus-visible:ring-indigo-600 " +
+        hoverEffects,
+
+      secondary:
+        "bg-slate-200 text-slate-900 border-transparent " +
+        "dark:bg-slate-800 dark:text-slate-100 " +
+        "shadow-sm hover:shadow-md " +
+        "focus-visible:ring-slate-400 " +
+        hoverEffects,
+
+      outline:
+        "bg-transparent text-slate-900 border-2 border-slate-200 " +
+        "hover:border-slate-300 hover:bg-slate-50 " +
+        "dark:text-slate-100 dark:border-slate-800 dark:hover:border-slate-700 dark:hover:bg-slate-900 " +
+        "focus-visible:ring-slate-400 " +
+        hoverEffects,
+
+      ghost:
+        "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 " +
+        "dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100 " +
+        "focus-visible:ring-slate-400",
+
+      danger:
+        "bg-rose-600 text-white border-transparent " +
+        "shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 " +
+        "focus-visible:ring-rose-600 " +
+        hoverEffects,
+
+      success:
+        "bg-emerald-600 text-white border-transparent " +
+        "shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 " +
+        "focus-visible:ring-emerald-600 " +
+        hoverEffects,
+
+      warning:
+        "bg-amber-500 text-slate-900 border-transparent " +
+        "shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 " +
+        "focus-visible:ring-amber-500 " +
+        hoverEffects,
+
+      info:
+        "bg-sky-500 text-white border-transparent " +
+        "shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 " +
+        "focus-visible:ring-sky-500 " +
+        hoverEffects,
+
+      link:
+        "bg-transparent text-indigo-600 underline-offset-4 hover:underline " +
+        "dark:text-indigo-400 " +
+        "focus-visible:ring-indigo-500 shadow-none active:scale-100",
+
+      glass:
+        "bg-white/10 text-white border border-white/20 backdrop-blur-xl " +
+        "hover:bg-white/20 hover:border-white/30 " +
+        "shadow-xl shadow-black/10 " +
+        "focus-visible:ring-white/50 " +
+        hoverEffects,
     };
 
-    // Size Styles
-    const sizes = {
+    const sizes: Record<NonNullable<DjButtonProps["size"]>, string> = {
       sm: "h-8 px-3 text-xs",
       md: "h-10 px-4 py-2",
       lg: "h-12 px-8 text-base",
       xl: "h-14 px-10 text-lg",
-      icon: "h-10 w-10",
+      icon: "h-10 w-10 p-0",
     };
 
     return (
@@ -101,51 +169,43 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
           variants[variant],
           sizes[size],
           isFullWidth && "w-full",
-          pill ? "rounded-full" : "rounded-lg",
+          pill ? "rounded-full" : "rounded-xl",
           className
         )}
         disabled={disabled || isLoading}
         {...props}
       >
-        {/* Note: When asChild is true, we need to be careful with internal structure. 
-            Slottable content is handled by Radix Slot, but we typically wrap content manually if we inject icons.
-            However, when asChild is true, we assume the child handles its own content or we merge props.
-            For simplicity in this advanced example, we render icons ONLY if not asChild, 
-            or we expect the user to pass them inside the child.
-            BUT, to be robust: loading spinner replaces content if loading. */}
-        
         {isLoading ? (
-            <>
-                <svg
-                    className="animate-spin -ml-1 mr-2 h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                >
-                    <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    />
-                    <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    />
-                </svg>
-                {/* When loading, we might want to keep the text visible but dimmed, or replaced. 
-                    Standard pattern often is replacing or prepending. Here we prepend spinner. */}
-                {children}
-            </>
+          <>
+            <svg
+              className="animate-spin -ml-1 mr-1 h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+            {children}
+          </>
         ) : (
-            <>
-               {!asChild && leftIcon}
-               {children}
-               {!asChild && rightIcon}
-            </>
+          <>
+            {!asChild && leftIcon}
+            {children}
+            {!asChild && rightIcon}
+          </>
         )}
       </Comp>
     );
