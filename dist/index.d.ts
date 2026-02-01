@@ -240,6 +240,7 @@ interface DjSidebarMenuItem {
     href?: string;
     onClick?: () => void;
     badge?: string | number;
+    children?: DjSidebarMenuItem[];
 }
 interface DjSidebarProps {
     /**
@@ -289,7 +290,7 @@ interface DjSidebarProps {
 }
 /**
  * DjSidebar is a professional navigation sidebar with industrial black/white aesthetics.
- * Features logo placement, icon menu, responsive collapse, and flexible positioning.
+ * Features logo placement, icon menu, nested navigation, responsive collapse, and flexible positioning.
  */
 declare const DjSidebar: React__default.FC<DjSidebarProps>;
 

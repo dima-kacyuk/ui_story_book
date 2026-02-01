@@ -150,3 +150,91 @@ export const WithFooter: Story = {
     </div>
   ),
 };
+
+const nestedMenuItems = [
+  { id: 'home', label: 'Dashboard', icon: <Home />, href: '#' },
+  {
+    id: 'products',
+    label: 'Products',
+    icon: <Users />,
+    badge: '24',
+    children: [
+      { id: 'products-all', label: 'All Products', icon: <BarChart3 /> },
+      { id: 'products-new', label: 'Add New', icon: <Mail />, badge: 'New' },
+      {
+        id: 'products-categories',
+        label: 'Categories',
+        icon: <Settings />,
+        children: [
+          { id: 'cat-electronics', label: 'Electronics', icon: <Bell /> },
+          { id: 'cat-clothing', label: 'Clothing', icon: <Users /> },
+          { id: 'cat-food', label: 'Food & Beverage', icon: <Home /> },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'analytics',
+    label: 'Analytics',
+    icon: <BarChart3 />,
+    children: [
+      { id: 'analytics-overview', label: 'Overview', icon: <Home /> },
+      { id: 'analytics-reports', label: 'Reports', icon: <Mail />, badge: '5' },
+      { id: 'analytics-exports', label: 'Exports', icon: <Settings /> },
+    ],
+  },
+  { id: 'messages', label: 'Messages', icon: <Mail />, badge: '3' },
+  { id: 'settings', label: 'Settings', icon: <Settings /> },
+];
+
+export const NestedNavigation: Story = {
+  args: {
+    logo: <SampleLogo />,
+    menuItems: nestedMenuItems,
+    activeItemId: 'cat-electronics',
+    variant: 'white',
+    position: 'left',
+  },
+  render: (args) => (
+    <div className="flex h-screen bg-slate-50">
+      <DjSidebar {...args} />
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-black">Nested Navigation Demo</h1>
+        <p className="text-slate-600 mt-2">
+          This sidebar supports unlimited nesting levels with collapsible sub-menus.
+        </p>
+        <div className="mt-6 p-6 bg-white rounded-2xl border-2 border-slate-900">
+          <h2 className="text-xl font-black mb-4">Features:</h2>
+          <ul className="space-y-2 text-slate-700">
+            <li>✅ <strong>Sub-tabs</strong>: Click "Products" to expand/collapse</li>
+            <li>✅ <strong>Sub-sub-tabs</strong>: Expand "Categories" for deeper nesting</li>
+            <li>✅ <strong>Visual Indentation</strong>: Clear hierarchy with left margin</li>
+            <li>✅ <strong>Smooth Animations</strong>: ChevronDown rotates on expand</li>
+            <li>✅ <strong>Active State</strong>: "Electronics" is currently active</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const NestedBlackVariant: Story = {
+  args: {
+    logo: <SampleLogo />,
+    menuItems: nestedMenuItems,
+    activeItemId: 'products-new',
+    variant: 'black',
+    position: 'left',
+  },
+  render: (args) => (
+    <div className="flex h-screen bg-slate-50">
+      <DjSidebar {...args} />
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-black">Nested Navigation (Black Variant)</h1>
+        <p className="text-slate-600 mt-2">
+          The same nested structure with the black variant for high-contrast dark mode.
+        </p>
+      </div>
+    </div>
+  ),
+};
