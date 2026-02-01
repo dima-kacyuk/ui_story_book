@@ -14,7 +14,7 @@ interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      * Defines the visual style of the button.
      * @default "primary"
      */
-    variant?: "primary" | "secondary" | "outline" | "ghost" | "danger" | "success" | "warning" | "info" | "link" | "glass";
+    variant?: "black" | "white" | "primary" | "secondary" | "outline" | "ghost" | "danger" | "success" | "warning" | "info" | "link" | "glass";
     /**
      * Controls the size of the button.
      * @default "md"
@@ -112,6 +112,10 @@ interface DjSwitchProps extends React__default.ComponentPropsWithoutRef<typeof S
      * Size of the switch
      */
     size?: 'sm' | 'md' | 'lg';
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
 }
 /**
  * DjSwitch is a high-end toggle component powered by Radix UI.
@@ -157,6 +161,10 @@ interface DjCarouselProps {
      * Alignment of the slides
      */
     align?: 'start' | 'center' | 'end';
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
 }
 /**
  * DjCarousel is a premium slider component powered by Embla Carousel.
@@ -189,6 +197,10 @@ interface DjInputProps extends Omit<React__default.InputHTMLAttributes<HTMLInput
      * If true, only alphabetic characters will be allowed
      */
     onlyStrings?: boolean;
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
 }
 /**
  * DjInput is a high-performance input suite with industrial design.
@@ -212,7 +224,7 @@ interface DjTableProps<TData> {
     className?: string;
     onRowClick?: (row: TData) => void;
     enableSelection?: boolean;
-    variant?: 'default' | 'bordered';
+    variant?: 'black' | 'white';
     styles?: DjTableStyles;
 }
 /**

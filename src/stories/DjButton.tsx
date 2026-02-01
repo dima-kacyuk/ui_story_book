@@ -13,6 +13,8 @@ export interface DjButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * @default "primary"
    */
   variant?:
+    | "black"
+    | "white"
     | "primary"
     | "secondary"
     | "outline"
@@ -136,6 +138,18 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
     const hoverEffects = "hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0";
 
     const variants: Record<NonNullable<DjButtonProps["variant"]>, string> = {
+      black:
+        "bg-slate-900 text-white border-2 border-white " +
+        "hover:bg-slate-800 active:bg-slate-950 " +
+        "focus-visible:ring-white/20 " +
+        hoverEffects,
+
+      white:
+        "bg-white text-slate-900 border-2 border-slate-900 " +
+        "hover:bg-slate-50 active:bg-slate-100 " +
+        "focus-visible:ring-slate-900/20 " +
+        hoverEffects,
+
       primary:
         "bg-slate-950 text-white border border-transparent " +
         "shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 " +

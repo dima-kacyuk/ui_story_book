@@ -20,6 +20,10 @@ export interface DjSwitchProps extends React.ComponentPropsWithoutRef<typeof Swi
    * Size of the switch
    */
   size?: 'sm' | 'md' | 'lg';
+  /**
+   * Visual variant
+   */
+  variant?: 'black' | 'white';
 }
 
 /**
@@ -29,7 +33,7 @@ export interface DjSwitchProps extends React.ComponentPropsWithoutRef<typeof Swi
 export const DjSwitch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   DjSwitchProps
->(({ className, label, description, size = 'md', id: providedId, ...props }, ref) => {
+>(({ className, label, description, size = 'md', variant = 'white', id: providedId, ...props }, ref) => {
   const generatedId = useId();
   const id = providedId || generatedId;
 
@@ -44,9 +48,9 @@ export const DjSwitch = React.forwardRef<
       <SwitchPrimitives.Root
         id={id}
         className={cn(
-          "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50",
-          "bg-slate-200 dark:bg-slate-800",
-          "data-[state=checked]:bg-slate-950 dark:data-[state=checked]:bg-white",
+          "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          variant === 'black' && "bg-slate-300 border-transparent data-[state=checked]:bg-slate-900 data-[state=checked]:border-white focus-visible:ring-white",
+          variant === 'white' && "bg-slate-200 border-transparent data-[state=checked]:bg-white data-[state=checked]:border-slate-900 focus-visible:ring-slate-900",
           sizeStyles.root,
           className
         )}
@@ -55,7 +59,9 @@ export const DjSwitch = React.forwardRef<
       >
         <SwitchPrimitives.Thumb
           className={cn(
-            "pointer-events-none block rounded-full bg-white shadow-lg ring-0 transition-transform dark:bg-slate-950",
+            "pointer-events-none block rounded-full shadow-lg ring-0 transition-transform",
+            variant === 'black' && "bg-white data-[state=checked]:bg-white",
+            variant === 'white' && "bg-white data-[state=checked]:bg-slate-900",
             "data-[state=unchecked]:translate-x-0",
             sizeStyles.thumb
           )}

@@ -32,6 +32,10 @@ export interface DjInputProps extends Omit<React.InputHTMLAttributes<HTMLInputEl
    * If true, only alphabetic characters will be allowed
    */
   onlyStrings?: boolean;
+  /**
+   * Visual variant
+   */
+  variant?: 'black' | 'white';
 }
 
 /**
@@ -48,6 +52,7 @@ export const DjInput = React.forwardRef<HTMLInputElement, DjInputProps>(
     type = 'text', 
     onlyNumbers, 
     onlyStrings,
+    variant = 'white',
     id: providedId, 
     onChange,
     ...props 
@@ -96,12 +101,11 @@ export const DjInput = React.forwardRef<HTMLInputElement, DjInputProps>(
             type={inputType}
             onChange={handleInputFilter}
             className={cn(
-              "w-full h-12 px-4 text-sm font-medium bg-white dark:bg-[#09090b] outline-none transition-all duration-300",
-              "border-2 border-slate-100 dark:border-white/5",
-              "hover:border-slate-200 dark:hover:border-white/10",
-              "focus:border-slate-950 dark:focus:border-white focus:ring-4 focus:ring-slate-900/5 dark:focus:ring-white/5",
-              "rounded-2xl placeholder:text-slate-400 placeholder:font-normal",
-              error && "border-rose-500 hover:border-rose-500 focus:border-rose-500 focus:ring-rose-500/5 dark:border-rose-800 dark:hover:border-rose-700",
+              "w-full h-12 px-4 text-sm font-medium outline-none transition-all duration-300",
+              "border-2 rounded-2xl placeholder:font-normal",
+              variant === 'black' && "bg-slate-900 text-white border-white placeholder:text-slate-400 hover:bg-slate-800 focus:bg-slate-900 focus:border-white focus:ring-4 focus:ring-white/10",
+              variant === 'white' && "bg-white text-slate-900 border-slate-900 placeholder:text-slate-400 hover:border-slate-700 focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5",
+              error && "border-rose-500 hover:border-rose-500 focus:border-rose-500 focus:ring-rose-500/5",
               leftIcon && "pl-12",
               (rightIcon || isPassword) && "pr-12",
               className

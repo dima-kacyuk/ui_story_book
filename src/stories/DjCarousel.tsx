@@ -47,6 +47,10 @@ export interface DjCarouselProps {
    * Alignment of the slides
    */
   align?: 'start' | 'center' | 'end';
+  /**
+   * Visual variant
+   */
+  variant?: 'black' | 'white';
 }
 
 /**
@@ -63,6 +67,7 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
   className,
   slideClassName,
   align = 'center',
+  variant = 'white',
 }) => {
   const plugins = autoplayInterval > 0 ? [Autoplay({ delay: autoplayInterval, stopOnInteraction: false })] : [];
   
@@ -121,25 +126,29 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
         <>
           <button
             className={cn(
-              "absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 shadow-xl transition-all",
+              "absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-md border-2 shadow-xl transition-all",
               "hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none",
-              "opacity-0 group-hover/carousel:opacity-100"
+              "opacity-0 group-hover/carousel:opacity-100",
+              variant === 'black' && "bg-slate-900/80 border-white",
+              variant === 'white' && "bg-white/80 border-slate-900"
             )}
             onClick={scrollPrev}
             disabled={!prevBtnEnabled}
           >
-            <ChevronLeft size={24} className="text-slate-900 dark:text-white" />
+            <ChevronLeft size={24} className={cn(variant === 'black' ? "text-white" : "text-slate-900")} />
           </button>
           <button
             className={cn(
-              "absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 shadow-xl transition-all",
+              "absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-md border-2 shadow-xl transition-all",
               "hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none",
-              "opacity-0 group-hover/carousel:opacity-100"
+              "opacity-0 group-hover/carousel:opacity-100",
+              variant === 'black' && "bg-slate-900/80 border-white",
+              variant === 'white' && "bg-white/80 border-slate-900"
             )}
             onClick={scrollNext}
             disabled={!nextBtnEnabled}
           >
-            <ChevronRight size={24} className="text-slate-900 dark:text-white" />
+            <ChevronRight size={24} className={cn(variant === 'black' ? "text-white" : "text-slate-900")} />
           </button>
         </>
       )}
@@ -151,9 +160,17 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
               key={index}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
-                index === selectedIndex 
-                  ? "w-8 bg-slate-900 dark:bg-white" 
-                  : "w-1.5 bg-slate-900/20 dark:bg-white/20 hover:bg-slate-900/40 dark:hover:bg-white/40"
+                index === selectedIndex
+                  ? cn(
+                      "w-8",
+                      variant === 'black' && "bg-white",
+                      variant === 'white' && "bg-slate-900"
+                    )
+                  : cn(
+                      "w-1.5",
+                      variant === 'black' && "bg-white/20 hover:bg-white/40",
+                      variant === 'white' && "bg-slate-900/20 hover:bg-slate-900/40"
+                    )
               )}
               onClick={() => scrollTo(index)}
             />

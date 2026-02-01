@@ -117,6 +117,7 @@ export const Default: Story = {
   args: {
     data: data,
     columns: columns as any,
+    variant: 'white',
     pageSize: 5,
   },
 };
@@ -126,15 +127,25 @@ export const SelectionDisabled: Story = {
     data: data,
     columns: columns as any,
     enableSelection: false,
+    variant: 'white',
     pageSize: 10,
   },
 };
 
-export const BorderedWhite: Story = {
+export const Black: Story = {
   args: {
     data: data,
     columns: columns as any,
-    variant: 'bordered',
+    variant: 'black',
+    pageSize: 5,
+  },
+};
+
+export const White: Story = {
+  args: {
+    data: data,
+    columns: columns as any,
+    variant: 'white',
     pageSize: 5,
   },
 };
@@ -143,7 +154,7 @@ export const CustomStyled: Story = {
   args: {
     data: data,
     columns: columns as any,
-    variant: 'default',
+    variant: 'white',
     pageSize: 5,
     styles: {
       headerBg: '#4f46e5',

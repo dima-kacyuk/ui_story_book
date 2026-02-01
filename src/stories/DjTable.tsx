@@ -40,7 +40,7 @@ export interface DjTableProps<TData> {
   className?: string;
   onRowClick?: (row: TData) => void;
   enableSelection?: boolean;
-  variant?: 'default' | 'bordered';
+  variant?: 'black' | 'white';
   styles?: DjTableStyles;
 }
 
@@ -55,14 +55,15 @@ export function DjTable<TData>({
   className,
   onRowClick,
   enableSelection = true,
-  variant = 'default',
+  variant = 'white',
   styles,
 }: DjTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
 
-  const isBordered = variant === 'bordered';
+  const isBlack = variant === 'black';
+  const isWhite = variant === 'white';
 
   const finalColumns = useMemo(() => {
     if (!enableSelection) return columns;
@@ -121,7 +122,8 @@ export function DjTable<TData>({
       <div 
         className={cn(
           "overflow-x-auto rounded-3xl",
-          isBordered ? "bg-white border-2 border-slate-900" : "bg-white dark:bg-[#09090b] border border-slate-100 dark:border-white/5"
+          isBlack && "bg-slate-900 border-2 border-white",
+          isWhite && "bg-white border-2 border-slate-900"
         )}
         style={{ 
           backgroundColor: styles?.rowBg,
@@ -131,7 +133,8 @@ export function DjTable<TData>({
         <table className="w-full text-sm text-left border-collapse">
           <thead
             className={cn(
-              isBordered ? "bg-slate-900 text-white" : "border-b border-slate-100 dark:border-white/5"
+              isBlack && "bg-slate-900 text-white border-b-2 border-white",
+              isWhite && "bg-white text-slate-900 border-b-2 border-slate-900"
             )}
             style={{ 
               backgroundColor: styles?.headerBg,
@@ -145,8 +148,8 @@ export function DjTable<TData>({
                     key={header.id}
                     className={cn(
                       "px-6 py-5 font-black uppercase tracking-widest text-[10px] select-none",
-                      !isBordered && "text-slate-500 dark:text-slate-400",
-                      isBordered && "border-r border-slate-700 last:border-r-0"
+                      isBlack && "border-r-2 border-white last:border-r-0",
+                      isWhite && "border-r-2 border-slate-900 last:border-r-0"
                     )}
                   >
                     {header.isPlaceholder ? null : (
@@ -171,8 +174,9 @@ export function DjTable<TData>({
           </thead>
           <tbody 
             className={cn(
-              "divide-y divide-slate-100 dark:divide-white/[0.02]",
-              isBordered && "divide-slate-200"
+              "divide-y",
+              isBlack && "divide-white",
+              isWhite && "divide-slate-900"
             )}
             style={{ borderColor: styles?.borderColor }}
           >
@@ -181,8 +185,10 @@ export function DjTable<TData>({
                 key={row.id}
                 className={cn(
                   "transition-colors",
-                  row.getIsSelected() ? "bg-slate-50/50 dark:bg-white/[0.02]" : "hover:bg-slate-50/30 dark:hover:bg-white/[0.01]",
-                  isBordered && !row.getIsSelected() && "hover:bg-slate-50",
+                  isBlack && !row.getIsSelected() && "hover:bg-slate-800",
+                  isWhite && !row.getIsSelected() && "hover:bg-slate-50",
+                  row.getIsSelected() && isBlack && "bg-slate-800",
+                  row.getIsSelected() && isWhite && "bg-slate-100",
                   onRowClick && "cursor-pointer"
                 )}
                 style={{ 
@@ -195,8 +201,8 @@ export function DjTable<TData>({
                     key={cell.id} 
                     className={cn(
                       "px-6 py-4 font-medium whitespace-nowrap transition-colors",
-                      !isBordered && "text-slate-700 dark:text-slate-300",
-                      isBordered && "border-r border-slate-100 last:border-r-0 text-slate-900"
+                      isBlack && "text-white border-r-2 border-white last:border-r-0",
+                      isWhite && "text-slate-900 border-r-2 border-slate-900 last:border-r-0"
                     )}
                     style={{ color: styles?.rowText }}
                   >
