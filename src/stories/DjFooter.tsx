@@ -32,6 +32,10 @@ export interface DjFooterProps {
    * Optional className
    */
   className?: string;
+  /**
+   * Callback for navigation link clicks (for router integration)
+   */
+  onLinkClick?: (href: string) => void;
 }
 
 /**
@@ -43,8 +47,16 @@ export const DjFooter: React.FC<DjFooterProps> = ({
   copyright = `© ${new Date().getFullYear()} All rights reserved.`,
   variant = 'white',
   className,
+  onLinkClick,
 }) => {
   const isBlack = variant === 'black';
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    if (onLinkClick) {
+      e.preventDefault();
+      onLinkClick(href);
+    }
+  };
 
   return (
     <footer
@@ -66,6 +78,7 @@ export const DjFooter: React.FC<DjFooterProps> = ({
             <a
               key={i}
               href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
               className={cn(
                 "text-sm font-bold uppercase tracking-wide transition-colors hover:underline decoration-2 underline-offset-4",
                 isBlack ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"

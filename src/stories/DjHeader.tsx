@@ -46,6 +46,10 @@ export interface DjHeaderProps {
    * Optional className
    */
   className?: string;
+  /**
+   * Callback for navigation link clicks (for router integration)
+   */
+  onLinkClick?: (href: string) => void;
 }
 
 /**
@@ -60,8 +64,16 @@ export const DjHeader: React.FC<DjHeaderProps> = ({
   onToggleTheme,
   isDark = false,
   className,
+  onLinkClick,
 }) => {
   const isBlack = variant === 'black';
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    if (onLinkClick) {
+      e.preventDefault();
+      onLinkClick(href);
+    }
+  };
 
   return (
     <header
@@ -84,6 +96,7 @@ export const DjHeader: React.FC<DjHeaderProps> = ({
             <a
               key={i}
               href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
               className={cn(
                 "text-sm font-bold uppercase tracking-wide transition-colors hover:scale-105 active:scale-95",
                 isBlack ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900"

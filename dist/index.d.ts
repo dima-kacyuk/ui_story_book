@@ -694,6 +694,10 @@ interface DjHeaderProps {
      * Optional className
      */
     className?: string;
+    /**
+     * Callback for navigation link clicks (for router integration)
+     */
+    onLinkClick?: (href: string) => void;
 }
 /**
  * DjHeader is a simple, clean header component with navigation and theme controls.
@@ -725,6 +729,10 @@ interface DjFooterProps {
      * Optional className
      */
     className?: string;
+    /**
+     * Callback for navigation link clicks (for router integration)
+     */
+    onLinkClick?: (href: string) => void;
 }
 /**
  * DjFooter is a simple, minimalistic footer component.
