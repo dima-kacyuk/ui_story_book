@@ -1,7 +1,7 @@
 {
   "name": "@dima-kacyuk/ui-story-book",
   "private": false,
-  "version": "1.5.4",
+  "version": "1.10.0",
   "type": "module",
   "sideEffects": false,
   "files": [

@@ -233,6 +233,66 @@ interface DjTableProps<TData> {
  */
 declare function DjTable<TData>({ data, columns, pageSize, className, onRowClick, enableSelection, variant, styles, }: DjTableProps<TData>): react_jsx_runtime.JSX.Element;
 
+interface DjSidebarMenuItem {
+    id: string;
+    label: string;
+    icon: ReactNode;
+    href?: string;
+    onClick?: () => void;
+    badge?: string | number;
+}
+interface DjSidebarProps {
+    /**
+     * Logo or brand element to display at the top
+     */
+    logo?: ReactNode;
+    /**
+     * Array of menu items with icons and labels
+     */
+    menuItems: DjSidebarMenuItem[];
+    /**
+     * ID of the currently active menu item
+     */
+    activeItemId?: string;
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
+    /**
+     * Position of the sidebar
+     */
+    position?: 'left' | 'right';
+    /**
+     * Whether the sidebar starts collapsed
+     */
+    defaultCollapsed?: boolean;
+    /**
+     * Callback when collapse state changes
+     */
+    onCollapse?: (collapsed: boolean) => void;
+    /**
+     * Custom class for the root container
+     */
+    className?: string;
+    /**
+     * Width of the expanded sidebar
+     */
+    width?: string;
+    /**
+     * Width of the collapsed sidebar
+     */
+    collapsedWidth?: string;
+    /**
+     * Footer content at the bottom of the sidebar
+     */
+    footer?: ReactNode;
+}
+/**
+ * DjSidebar is a professional navigation sidebar with industrial black/white aesthetics.
+ * Features logo placement, icon menu, responsive collapse, and flexible positioning.
+ */
+declare const DjSidebar: React__default.FC<DjSidebarProps>;
+
 interface BadgeProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
      * The visual style of the badge
@@ -637,4 +697,4 @@ interface FooterProps {
  */
 declare const Footer: ({ theme }: FooterProps) => react_jsx_runtime.JSX.Element;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSwitchProps, type DjTableProps, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
