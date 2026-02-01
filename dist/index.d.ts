@@ -657,4 +657,70 @@ declare const DialogTrigger: React$1.ForwardRefExoticComponent<AlertDialogPrimit
 declare const DialogAction: React$1.ForwardRefExoticComponent<AlertDialogPrimitive.AlertDialogActionProps & React$1.RefAttributes<HTMLButtonElement>>;
 declare const DialogCancel: React$1.ForwardRefExoticComponent<AlertDialogPrimitive.AlertDialogCancelProps & React$1.RefAttributes<HTMLButtonElement>>;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+interface HeaderLink {
+    label: string;
+    href: string;
+}
+interface DjHeaderProps {
+    /**
+     * Logo text or element
+     */
+    logo?: React__default.ReactNode;
+    /**
+     * Navigation links array
+     */
+    links?: HeaderLink[];
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
+    /**
+     * Callback for login button click
+     */
+    onLogin?: () => void;
+    /**
+     * Callback for admin login button click
+     */
+    onAdminLogin?: () => void;
+    /**
+     * Callback for theme toggle
+     */
+    onToggleTheme?: () => void;
+    /**
+     * Current theme state
+     */
+    isDark?: boolean;
+    /**
+     * Optional className
+     */
+    className?: string;
+}
+
+interface FooterLink {
+    label: string;
+    href: string;
+}
+interface DjFooterProps {
+    /**
+     * Logo text or element
+     */
+    logo?: React__default.ReactNode;
+    /**
+     * Navigation links array
+     */
+    links?: FooterLink[];
+    /**
+     * Copyright text
+     */
+    copyright?: string;
+    /**
+     * Visual variant
+     */
+    variant?: 'black' | 'white';
+    /**
+     * Optional className
+     */
+    className?: string;
+}
+
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjFooterProps, type DjHeaderProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, type FooterLink, type HeaderLink, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };

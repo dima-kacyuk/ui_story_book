@@ -47,3 +47,5 @@ export type { AlertProps } from "./stories/Alert";
 export type { ToasterProps } from "./stories/Toaster";
 export type { DialogProps } from "./stories/Dialog";
 
+export type { DjHeaderProps, HeaderLink } from "./stories/DjHeader";
+export type { DjFooterProps, FooterLink } from "./stories/DjFooter";
