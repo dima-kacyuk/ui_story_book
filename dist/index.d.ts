@@ -163,36 +163,37 @@ interface DjCarouselProps {
  */
 declare const DjCarousel: React__default.FC<DjCarouselProps>;
 
-interface InputProps extends React__default.InputHTMLAttributes<HTMLInputElement> {
+interface DjInputProps extends Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'error'> {
     /**
      * Optional label above the input
      */
     label?: string;
     /**
-     * Optional helper text below the input
+     * Optional helper text or error message below the input
      */
-    helperText?: string;
-    /**
-     * If true, displays an error state
-     */
-    error?: boolean;
+    error?: string | boolean;
     /**
      * Left side icon or element
      */
     leftIcon?: ReactNode;
     /**
-     * Right side icon or element
+     * Right side icon or element (ignored if type is 'password')
      */
     rightIcon?: ReactNode;
     /**
-     * Explicit theme override
+     * If true, only numbers will be allowed (useful for ZIP, card numbers etc)
      */
-    theme?: 'light' | 'dark';
+    onlyNumbers?: boolean;
+    /**
+     * If true, only alphabetic characters will be allowed
+     */
+    onlyStrings?: boolean;
 }
 /**
- * DjInput is a production-ready input field with premium focus mechanics and icon integration.
+ * DjInput is a high-performance input suite with industrial design.
+ * Features built-in validation constraints, password visibility toggle, and premium focus mechanics.
  */
-declare const Input: React__default.ForwardRefExoticComponent<InputProps & React__default.RefAttributes<HTMLInputElement>>;
+declare const DjInput: React__default.ForwardRefExoticComponent<DjInputProps & React__default.RefAttributes<HTMLInputElement>>;
 
 interface BadgeProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
@@ -598,4 +599,4 @@ interface FooterProps {
  */
 declare const Footer: ({ theme }: FooterProps) => react_jsx_runtime.JSX.Element;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjSwitchProps, type FooterProps, type HeaderProps, type InputProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, Input as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSwitchProps, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
