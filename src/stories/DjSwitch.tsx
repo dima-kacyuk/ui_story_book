@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -29,7 +29,10 @@ export interface DjSwitchProps extends React.ComponentPropsWithoutRef<typeof Swi
 export const DjSwitch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   DjSwitchProps
->(({ className, label, description, size = 'md', ...props }, ref) => {
+>(({ className, label, description, size = 'md', id: providedId, ...props }, ref) => {
+  const generatedId = useId();
+  const id = providedId || generatedId;
+
   const sizeStyles = {
     sm: { root: 'h-5 w-9', thumb: 'h-4 w-4 data-[state=checked]:translate-x-4' },
     md: { root: 'h-6 w-11', thumb: 'h-5 w-5 data-[state=checked]:translate-x-5' },
@@ -39,6 +42,7 @@ export const DjSwitch = React.forwardRef<
   return (
     <div className="flex items-start gap-3 group/sw">
       <SwitchPrimitives.Root
+        id={id}
         className={cn(
           "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50",
           "bg-slate-200 dark:bg-slate-800",
@@ -58,18 +62,18 @@ export const DjSwitch = React.forwardRef<
         />
       </SwitchPrimitives.Root>
       {(label || description) && (
-        <div className="flex flex-col gap-0.5 select-none cursor-pointer" onClick={() => (props as any).onCheckedChange?.(!props.checked)}>
+        <label htmlFor={id} className="flex flex-col gap-0.5 select-none cursor-pointer">
           {label && (
-            <span className="text-sm font-black tracking-tight text-slate-900 dark:text-slate-100 uppercase">
+            <span className="text-sm font-black tracking-tight text-slate-900 dark:text-slate-100 uppercase leading-none">
               {label}
             </span>
           )}
           {description && (
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight">
               {description}
             </span>
           )}
-        </div>
+        </label>
       )}
     </div>
   );

@@ -39,9 +39,14 @@ export interface DjCarouselProps {
    */
   className?: string;
   /**
-   * Custom class for the slide container
+   * Custom class for the slide container (controls slide width/spacing)
+   * Example: 'flex-[0_0_50%] pl-4' for 2 slides per view
    */
   slideClassName?: string;
+  /**
+   * Alignment of the slides
+   */
+  align?: 'start' | 'center' | 'end';
 }
 
 /**
@@ -57,12 +62,14 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
   showDots = true,
   className,
   slideClassName,
+  align = 'center',
 }) => {
   const plugins = autoplayInterval > 0 ? [Autoplay({ delay: autoplayInterval, stopOnInteraction: false })] : [];
   
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop, 
-    axis: orientation === 'horizontal' ? 'x' : 'y' 
+    axis: orientation === 'horizontal' ? 'x' : 'y',
+    align
   }, plugins);
 
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
@@ -100,7 +107,7 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
             <div 
               key={index} 
               className={cn(
-                "relative min-w-0 flex-[0_0_100%] h-full",
+                "relative min-w-0 flex-[0_0_100%]",
                 slideClassName
               )}
             >
@@ -137,7 +144,7 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
         </>
       )}
 
-      {showDots && (
+      {showDots && scrollSnaps.length > 1 && (
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {scrollSnaps.map((_, index) => (
             <button

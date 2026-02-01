@@ -148,9 +148,14 @@ interface DjCarouselProps {
      */
     className?: string;
     /**
-     * Custom class for the slide container
+     * Custom class for the slide container (controls slide width/spacing)
+     * Example: 'flex-[0_0_50%] pl-4' for 2 slides per view
      */
     slideClassName?: string;
+    /**
+     * Alignment of the slides
+     */
+    align?: 'start' | 'center' | 'end';
 }
 /**
  * DjCarousel is a premium slider component powered by Embla Carousel.
