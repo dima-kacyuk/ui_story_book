@@ -256,7 +256,7 @@ export const DjButton = forwardRef<HTMLButtonElement, DjButtonProps>(
           variants[variant],
           sizes[size],
           isFullWidth && "w-full",
-          pill ? "rounded-full" : (rounded ? roundedStyles[rounded] : "rounded-xl"),
+          pill ? "rounded-full" : (rounded ? roundedStyles[rounded] : "rounded-lg"),
           shadowProp && shadowStyles[shadowProp],
           theme === "dark" && "dark",
           theme === "light" && "light",

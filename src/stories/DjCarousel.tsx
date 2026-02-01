@@ -102,7 +102,7 @@ export const DjCarousel: React.FC<DjCarouselProps> = ({
   }, [emblaApi, setScrollSnaps, onSelect]);
 
   return (
-    <div className={cn("relative group/carousel overflow-hidden bg-white dark:bg-slate-950 rounded-3xl", className)}>
+    <div className={cn("relative group/carousel overflow-hidden bg-white dark:bg-slate-950 rounded-xl", className)}>
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className={cn(
           "flex touch-pan-y h-full",

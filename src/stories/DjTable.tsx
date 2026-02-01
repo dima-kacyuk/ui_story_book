@@ -121,7 +121,7 @@ export function DjTable<TData>({
     <div className={cn("flex flex-col w-full h-full gap-4", className)}>
       <div 
         className={cn(
-          "overflow-x-auto rounded-3xl",
+          "overflow-x-auto rounded-xl",
           isBlack && "bg-slate-900 border-2 border-white",
           isWhite && "bg-white border-2 border-slate-900"
         )}
@@ -241,7 +241,7 @@ export function DjTable<TData>({
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-slate-900 dark:text-white disabled:opacity-30 transition-all hover:scale-105 active:scale-95"
+            className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-slate-900 dark:text-white disabled:opacity-30 transition-all hover:scale-105 active:scale-95"
           >
             <ChevronLeft size={18} />
           </button>
@@ -254,7 +254,7 @@ export function DjTable<TData>({
                   key={i}
                   onClick={() => table.setPageIndex(pageIdx)}
                   className={cn(
-                    "w-10 h-10 flex items-center justify-center rounded-xl text-[10px] font-black transition-all",
+                    "w-10 h-10 flex items-center justify-center rounded-lg text-[10px] font-black transition-all",
                     table.getState().pagination.pageIndex === pageIdx
                       ? "bg-slate-950 dark:bg-white text-white dark:text-slate-950 shadow-lg"
                       : "bg-transparent text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5"
@@ -269,7 +269,7 @@ export function DjTable<TData>({
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-slate-900 dark:text-white disabled:opacity-30 transition-all hover:scale-105 active:scale-95"
+            className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-slate-900 dark:text-white disabled:opacity-30 transition-all hover:scale-105 active:scale-95"
           >
             <ChevronRight size={18} />
           </button>

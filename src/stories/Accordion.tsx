@@ -37,7 +37,7 @@ export const AccordionItem = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      "border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden bg-white dark:bg-slate-950 transition-all duration-300",
+      "border border-slate-100 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-950 transition-all duration-300",
       "data-[state=open]:shadow-xl data-[state=open]:shadow-slate-900/5 dark:data-[state=open]:shadow-white/5",
       className
     )}
