@@ -22,6 +22,10 @@ export { Accordion as djAccordion, AccordionItem, AccordionTrigger, AccordionCon
 export { Alert as djAlert } from "./stories/Alert";
 export { Toaster as djToaster, djToast } from "./stories/Toaster";
 export { Dialog as djDialog, DialogTrigger, DialogAction, DialogCancel } from "./stories/Dialog";
+export { DjHeader as djHeader } from "./stories/DjHeader";
+export { DjFooter as djFooter } from "./stories/DjFooter";
+export { Header } from "./stories/Header";
+export { Footer } from "./stories/Footer";
 
 
 // Types
@@ -49,3 +53,5 @@ export type { DialogProps } from "./stories/Dialog";
 
 export type { DjHeaderProps, HeaderLink } from "./stories/DjHeader";
 export type { DjFooterProps, FooterLink } from "./stories/DjFooter";
+export type { HeaderProps } from "./stories/Header";
+export type { FooterProps } from "./stories/Footer";

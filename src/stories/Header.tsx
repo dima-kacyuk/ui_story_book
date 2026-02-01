@@ -28,6 +28,14 @@ export interface HeaderProps {
    * Callback for theme toggle
    */
   onThemeToggle?: () => void;
+  /**
+   * Callback for login action
+   */
+  onLogin?: () => void;
+  /**
+   * Callback for signup/get started action
+   */
+  onSignup?: () => void;
 }
 
 /**
@@ -43,7 +51,9 @@ export const Header = ({
   ],
   theme,
   currentTheme = 'dark',
-  onThemeToggle
+  onThemeToggle,
+  onLogin,
+  onSignup
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -91,11 +101,17 @@ export const Header = ({
              <ChevronDown size={14} />
           </div>
           
-          <button className="hidden sm:inline-flex items-center justify-center h-10 px-4 rounded-xl text-sm font-black text-slate-950 bg-slate-100 hover:bg-slate-200 dark:bg-white dark:hover:bg-slate-100 transition-all active:scale-95">
+          <button 
+            onClick={onLogin}
+            className="hidden sm:inline-flex items-center justify-center h-10 px-4 rounded-xl text-sm font-black text-slate-950 bg-slate-100 hover:bg-slate-200 dark:bg-white dark:hover:bg-slate-100 transition-all active:scale-95"
+          >
             Log In
           </button>
           
-          <button className="inline-flex items-center justify-center h-10 px-4 rounded-xl text-sm font-black text-white bg-slate-900 hover:bg-black dark:bg-indigo-600 dark:hover:bg-indigo-500 transition-all active:scale-95 shadow-xl shadow-slate-900/10">
+          <button 
+            onClick={onSignup}
+            className="inline-flex items-center justify-center h-10 px-4 rounded-xl text-sm font-black text-white bg-slate-900 hover:bg-black dark:bg-indigo-600 dark:hover:bg-indigo-500 transition-all active:scale-95 shadow-xl shadow-slate-900/10"
+          >
             Get Started
           </button>
 
@@ -136,10 +152,16 @@ export const Header = ({
                    Switch to {currentTheme === 'dark' ? 'Light' : 'Dark'} Mode
                  </button>
                )}
-               <button className="w-full h-14 rounded-2xl bg-slate-100 dark:bg-white/10 font-black text-slate-950 dark:text-white text-lg">
+               <button 
+                 onClick={onLogin}
+                 className="w-full h-14 rounded-2xl bg-slate-100 dark:bg-white/10 font-black text-slate-950 dark:text-white text-lg"
+               >
                   Sign In
                </button>
-               <button className="w-full h-14 rounded-2xl bg-slate-900 dark:bg-indigo-600 text-white font-black text-lg">
+               <button 
+                 onClick={onSignup}
+                 className="w-full h-14 rounded-2xl bg-slate-900 dark:bg-indigo-600 text-white font-black text-lg"
+               >
                   Start FREE Trial
                </button>
             </div>
