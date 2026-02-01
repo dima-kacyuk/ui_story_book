@@ -112,6 +112,11 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
     const isExpanded = expandedItems.has(item.id);
     const ItemWrapper = item.href ? 'a' : 'button';
 
+    // Progressive text sizing based on nesting level
+    const textSize = level === 0 ? 'text-xs' : level === 1 ? 'text-[11px]' : 'text-[10px]';
+    const iconSize = level === 0 ? 18 : level === 1 ? 16 : 14;
+    const badgeSize = level === 0 ? 'text-[9px]' : 'text-[8px]';
+
     return (
       <li key={item.id}>
         <ItemWrapper
@@ -124,9 +129,9 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
             item.onClick?.();
           }}
           className={cn(
-            'w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group relative',
-            'hover:scale-[1.02] active:scale-[0.98]',
-            level > 0 && 'ml-4',
+            'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative',
+            'hover:scale-[1.01] active:scale-[0.99]',
+            level > 0 && 'ml-3',
             isActive && isBlack && 'bg-white text-slate-900',
             isActive && isWhite && 'bg-slate-900 text-white',
             !isActive && isBlack && 'hover:bg-white/10',
@@ -137,18 +142,19 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
         >
           <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center">
             {React.isValidElement(item.icon)
-              ? React.cloneElement(item.icon as React.ReactElement<any>, { size: 20 })
+              ? React.cloneElement(item.icon as React.ReactElement<any>, { size: iconSize })
               : item.icon}
           </span>
           {!isCollapsed && (
             <>
-              <span className="flex-1 text-sm font-black uppercase tracking-wide text-left">
+              <span className={cn('flex-1 font-bold uppercase tracking-wide text-left', textSize)}>
                 {item.label}
               </span>
               {item.badge && (
                 <span
                   className={cn(
-                    'px-2 py-0.5 text-[10px] font-black rounded-full',
+                    'px-1.5 py-0.5 font-bold rounded-full',
+                    badgeSize,
                     isActive && isBlack && 'bg-slate-900 text-white',
                     isActive && isWhite && 'bg-white text-slate-900',
                     !isActive && isBlack && 'bg-white/20 text-white',
@@ -160,7 +166,7 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
               )}
               {hasChildren && (
                 <ChevronDown
-                  size={16}
+                  size={14}
                   className={cn(
                     'transition-transform duration-200',
                     isExpanded && 'rotate-180'
@@ -174,7 +180,7 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
             <div
               className={cn(
                 'absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50',
-                'px-3 py-2 rounded-lg text-xs font-black uppercase tracking-wide whitespace-nowrap',
+                'px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wide whitespace-nowrap',
                 isLeft ? 'left-full ml-2' : 'right-full mr-2',
                 isBlack && 'bg-white text-slate-900',
                 isWhite && 'bg-slate-900 text-white'
@@ -186,7 +192,7 @@ export const DjSidebar: React.FC<DjSidebarProps> = ({
         </ItemWrapper>
         {/* Render children */}
         {hasChildren && !isCollapsed && isExpanded && (
-          <ul className="mt-1 space-y-1 overflow-hidden">
+          <ul className="mt-0.5 space-y-0.5 overflow-hidden">
             {item.children!.map((child) => renderMenuItem(child, level + 1))}
           </ul>
         )}
