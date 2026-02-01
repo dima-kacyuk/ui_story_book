@@ -2,6 +2,7 @@ import * as React$1 from 'react';
 import React__default, { ButtonHTMLAttributes, ReactNode } from 'react';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as react_jsx_runtime from 'react/jsx-runtime';
+import { ColumnDef } from '@tanstack/react-table';
 import * as Dialog$1 from '@radix-ui/react-dialog';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
@@ -194,6 +195,20 @@ interface DjInputProps extends Omit<React__default.InputHTMLAttributes<HTMLInput
  * Features built-in validation constraints, password visibility toggle, and premium focus mechanics.
  */
 declare const DjInput: React__default.ForwardRefExoticComponent<DjInputProps & React__default.RefAttributes<HTMLInputElement>>;
+
+interface DjTableProps<TData> {
+    data: TData[];
+    columns: ColumnDef<TData, any>[];
+    pageSize?: number;
+    className?: string;
+    onRowClick?: (row: TData) => void;
+    enableSelection?: boolean;
+}
+/**
+ * DjTable is a professional-grade data grid powered by TanStack Table.
+ * Features row selection, sorting, filtering, and adaptive pagination with a high-contrast industrial UI.
+ */
+declare function DjTable<TData>({ data, columns, pageSize, className, onRowClick, enableSelection, }: DjTableProps<TData>): react_jsx_runtime.JSX.Element;
 
 interface BadgeProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
@@ -599,4 +614,4 @@ interface FooterProps {
  */
 declare const Footer: ({ theme }: FooterProps) => react_jsx_runtime.JSX.Element;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSwitchProps, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSwitchProps, type DjTableProps, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
