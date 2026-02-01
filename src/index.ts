@@ -22,8 +22,7 @@ export { Accordion as djAccordion, AccordionItem, AccordionTrigger, AccordionCon
 export { Alert as djAlert } from "./stories/Alert";
 export { Toaster as djToaster, djToast } from "./stories/Toaster";
 export { Dialog as djDialog, DialogTrigger, DialogAction, DialogCancel } from "./stories/Dialog";
-export { Header as djHeader } from "./stories/Header";
-export { Footer as djFooter } from "./stories/Footer";
+
 
 // Types
 export type { DjButtonProps } from "./stories/DjButton";
@@ -47,5 +46,4 @@ export type { AccordionProps } from "./stories/Accordion";
 export type { AlertProps } from "./stories/Alert";
 export type { ToasterProps } from "./stories/Toaster";
 export type { DialogProps } from "./stories/Dialog";
-export type { HeaderProps } from "./stories/Header";
-export type { FooterProps } from "./stories/Footer";
+

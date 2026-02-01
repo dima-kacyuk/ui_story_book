@@ -657,45 +657,4 @@ declare const DialogTrigger: React$1.ForwardRefExoticComponent<AlertDialogPrimit
 declare const DialogAction: React$1.ForwardRefExoticComponent<AlertDialogPrimitive.AlertDialogActionProps & React$1.RefAttributes<HTMLButtonElement>>;
 declare const DialogCancel: React$1.ForwardRefExoticComponent<AlertDialogPrimitive.AlertDialogCancelProps & React$1.RefAttributes<HTMLButtonElement>>;
 
-interface HeaderProps {
-    /**
-     * Logo or brand content
-     */
-    logo?: React__default.ReactNode;
-    /**
-     * Navigation links array
-     */
-    navItems?: {
-        label: string;
-        href: string;
-    }[];
-    /**
-     * Optional theme override (not for switching, but for static styling)
-     */
-    theme?: 'light' | 'dark';
-    /**
-     * Current active theme (for toggle state)
-     */
-    currentTheme?: 'light' | 'dark';
-    /**
-     * Callback for theme toggle
-     */
-    onThemeToggle?: () => void;
-}
-/**
- * DjHeader is a premium, responsive navigation bar with mobile menu support and theme toggle.
- */
-declare const Header: ({ logo, navItems, theme, currentTheme, onThemeToggle }: HeaderProps) => react_jsx_runtime.JSX.Element;
-
-interface FooterProps {
-    /**
-     * Explicit theme override
-     */
-    theme?: 'light' | 'dark';
-}
-/**
- * DjFooter is a premium multi-column footer with social links and responsive grid.
- */
-declare const Footer: ({ theme }: FooterProps) => react_jsx_runtime.JSX.Element;
-
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, type FooterProps, type HeaderProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
