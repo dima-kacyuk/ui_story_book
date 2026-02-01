@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DjTable } from './DjTable';
 import { Badge } from './Badge';
-import { MoreHorizontal, Edit2, Trash2, Shield, Zap, Activity } from 'lucide-react';
-import React from 'react';
+import { Edit2, Trash2 } from 'lucide-react';
+
 
 const meta = {
   title: 'Components/DjTable',
@@ -129,3 +129,30 @@ export const SelectionDisabled: Story = {
     pageSize: 10,
   },
 };
+
+export const BorderedWhite: Story = {
+  args: {
+    data: data,
+    columns: columns as any,
+    variant: 'bordered',
+    pageSize: 5,
+  },
+};
+
+export const CustomStyled: Story = {
+  args: {
+    data: data,
+    columns: columns as any,
+    variant: 'default',
+    pageSize: 5,
+    styles: {
+      headerBg: '#4f46e5',
+      headerText: '#ffffff',
+      accentColor: '#fbbf24',
+      rowBg: '#f8fafc',
+      rowText: '#0f172a',
+      borderColor: '#e2e8f0',
+    }
+  },
+};
+

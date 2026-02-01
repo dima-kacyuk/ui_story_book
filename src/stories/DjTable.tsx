@@ -23,6 +23,16 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export interface DjTableStyles {
+  headerBg?: string;
+  headerText?: string;
+  rowBg?: string;
+  rowText?: string;
+  rowHoverBg?: string;
+  accentColor?: string;
+  borderColor?: string;
+}
+
 export interface DjTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData, any>[];
@@ -30,6 +40,8 @@ export interface DjTableProps<TData> {
   className?: string;
   onRowClick?: (row: TData) => void;
   enableSelection?: boolean;
+  variant?: 'default' | 'bordered';
+  styles?: DjTableStyles;
 }
 
 /**
@@ -43,10 +55,14 @@ export function DjTable<TData>({
   className,
   onRowClick,
   enableSelection = true,
+  variant = 'default',
+  styles,
 }: DjTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState({});
+
+  const isBordered = variant === 'bordered';
 
   const finalColumns = useMemo(() => {
     if (!enableSelection) return columns;
@@ -102,28 +118,49 @@ export function DjTable<TData>({
 
   return (
     <div className={cn("flex flex-col w-full h-full gap-4", className)}>
-      <div className="overflow-x-auto rounded-3xl border border-slate-100 dark:border-white/5 bg-white dark:bg-[#09090b]">
+      <div 
+        className={cn(
+          "overflow-x-auto rounded-3xl",
+          isBordered ? "bg-white border-2 border-slate-900" : "bg-white dark:bg-[#09090b] border border-slate-100 dark:border-white/5"
+        )}
+        style={{ 
+          backgroundColor: styles?.rowBg,
+          borderColor: styles?.borderColor 
+        }}
+      >
         <table className="w-full text-sm text-left border-collapse">
-          <thead>
+          <thead
+            className={cn(
+              isBordered ? "bg-slate-900 text-white" : "border-b border-slate-100 dark:border-white/5"
+            )}
+            style={{ 
+              backgroundColor: styles?.headerBg,
+              color: styles?.headerText 
+            }}
+          >
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b border-slate-100 dark:border-white/5">
+              <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-6 py-5 font-black uppercase tracking-widest text-[10px] text-slate-500 dark:text-slate-400 select-none"
+                    className={cn(
+                      "px-6 py-5 font-black uppercase tracking-widest text-[10px] select-none",
+                      !isBordered && "text-slate-500 dark:text-slate-400",
+                      isBordered && "border-r border-slate-700 last:border-r-0"
+                    )}
                   >
                     {header.isPlaceholder ? null : (
                       <div
                         className={cn(
                           "flex items-center gap-2",
-                          header.column.getCanSort() && "cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors"
+                          header.column.getCanSort() && "cursor-pointer hover:opacity-80 transition-opacity"
                         )}
                         onClick={header.column.getToggleSortingHandler()}
                       >
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         {{
-                          asc: <ChevronUp size={12} className="text-indigo-600" />,
-                          desc: <ChevronDown size={12} className="text-indigo-600" />,
+                          asc: <ChevronUp size={12} className={cn(styles?.accentColor || "text-indigo-600")} />,
+                          desc: <ChevronDown size={12} className={cn(styles?.accentColor || "text-indigo-600")} />,
                         }[header.column.getIsSorted() as string] ?? null}
                       </div>
                     )}
@@ -132,19 +169,37 @@ export function DjTable<TData>({
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody 
+            className={cn(
+              "divide-y divide-slate-100 dark:divide-white/[0.02]",
+              isBordered && "divide-slate-200"
+            )}
+            style={{ borderColor: styles?.borderColor }}
+          >
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
                 className={cn(
-                  "border-b border-slate-50 dark:border-white/[0.02] last:border-none transition-colors",
+                  "transition-colors",
                   row.getIsSelected() ? "bg-slate-50/50 dark:bg-white/[0.02]" : "hover:bg-slate-50/30 dark:hover:bg-white/[0.01]",
+                  isBordered && !row.getIsSelected() && "hover:bg-slate-50",
                   onRowClick && "cursor-pointer"
                 )}
+                style={{ 
+                  backgroundColor: row.getIsSelected() ? undefined : styles?.rowBg,
+                }}
                 onClick={() => onRowClick?.(row.original)}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-6 py-4 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap">
+                  <td 
+                    key={cell.id} 
+                    className={cn(
+                      "px-6 py-4 font-medium whitespace-nowrap transition-colors",
+                      !isBordered && "text-slate-700 dark:text-slate-300",
+                      isBordered && "border-r border-slate-100 last:border-r-0 text-slate-900"
+                    )}
+                    style={{ color: styles?.rowText }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

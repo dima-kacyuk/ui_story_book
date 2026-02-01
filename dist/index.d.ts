@@ -196,6 +196,15 @@ interface DjInputProps extends Omit<React__default.InputHTMLAttributes<HTMLInput
  */
 declare const DjInput: React__default.ForwardRefExoticComponent<DjInputProps & React__default.RefAttributes<HTMLInputElement>>;
 
+interface DjTableStyles {
+    headerBg?: string;
+    headerText?: string;
+    rowBg?: string;
+    rowText?: string;
+    rowHoverBg?: string;
+    accentColor?: string;
+    borderColor?: string;
+}
 interface DjTableProps<TData> {
     data: TData[];
     columns: ColumnDef<TData, any>[];
@@ -203,12 +212,14 @@ interface DjTableProps<TData> {
     className?: string;
     onRowClick?: (row: TData) => void;
     enableSelection?: boolean;
+    variant?: 'default' | 'bordered';
+    styles?: DjTableStyles;
 }
 /**
  * DjTable is a professional-grade data grid powered by TanStack Table.
  * Features row selection, sorting, filtering, and adaptive pagination with a high-contrast industrial UI.
  */
-declare function DjTable<TData>({ data, columns, pageSize, className, onRowClick, enableSelection, }: DjTableProps<TData>): react_jsx_runtime.JSX.Element;
+declare function DjTable<TData>({ data, columns, pageSize, className, onRowClick, enableSelection, variant, styles, }: DjTableProps<TData>): react_jsx_runtime.JSX.Element;
 
 interface BadgeProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
