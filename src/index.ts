@@ -1,7 +1,10 @@
 import "./index.css";
+
+// Components
 export { DjButton as djButton } from "./stories/DjButton";
 export { Checkbox as djCheckbox } from "./stories/Checkbox";
-export { Switch as djSwitch } from "./stories/Switch";
+export { DjSwitch as djSwitch } from "./stories/DjSwitch";
+export { DjCarousel as djCarousel } from "./stories/DjCarousel";
 export { Input as djInput } from "./stories/Input";
 export { Badge as djBadge } from "./stories/Badge";
 export { Card as djCard, CardHeader, CardBody, CardFooter } from "./stories/Card";
@@ -20,9 +23,11 @@ export { Dialog as djDialog, DialogTrigger, DialogAction, DialogCancel } from ".
 export { Header as djHeader } from "./stories/Header";
 export { Footer as djFooter } from "./stories/Footer";
 
+// Types
 export type { DjButtonProps } from "./stories/DjButton";
 export type { CheckboxProps } from "./stories/Checkbox";
-export type { SwitchProps } from "./stories/Switch";
+export type { DjSwitchProps } from "./stories/DjSwitch";
+export type { DjCarouselProps } from "./stories/DjCarousel";
 export type { InputProps } from "./stories/Input";
 export type { BadgeProps } from "./stories/Badge";
 export type { CardProps } from "./stories/Card";

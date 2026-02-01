@@ -1,5 +1,6 @@
 import * as React$1 from 'react';
 import React__default, { ButtonHTMLAttributes, ReactNode } from 'react';
+import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import * as Dialog$1 from '@radix-ui/react-dialog';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
@@ -97,20 +98,65 @@ interface CheckboxProps extends React__default.InputHTMLAttributes<HTMLInputElem
  */
 declare const Checkbox: React__default.ForwardRefExoticComponent<CheckboxProps & React__default.RefAttributes<HTMLInputElement>>;
 
-interface SwitchProps extends React__default.InputHTMLAttributes<HTMLInputElement> {
+interface DjSwitchProps extends React__default.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> {
     /**
      * Label for the switch
      */
     label?: string;
     /**
-     * Explicit theme override
+     * Optional helper text below the label
      */
-    theme?: 'light' | 'dark';
+    description?: string;
+    /**
+     * Size of the switch
+     */
+    size?: 'sm' | 'md' | 'lg';
 }
 /**
- * DjSwitch is a high-end toggle component with smooth physics and tactile interaction.
+ * DjSwitch is a high-end toggle component powered by Radix UI.
+ * It features smooth physics, tactile interaction, and perfect accessibility.
  */
-declare const Switch: React__default.ForwardRefExoticComponent<SwitchProps & React__default.RefAttributes<HTMLInputElement>>;
+declare const DjSwitch: React__default.ForwardRefExoticComponent<DjSwitchProps & React__default.RefAttributes<HTMLButtonElement>>;
+
+interface DjCarouselProps {
+    /**
+     * Slides to render within the carousel
+     */
+    children: React__default.ReactNode[];
+    /**
+     * Enable infinite loop
+     */
+    loop?: boolean;
+    /**
+     * Autoplay interval in ms (0 to disable)
+     */
+    autoplayInterval?: number;
+    /**
+     * Orientation of the carousel
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
+     * Show navigation arrows
+     */
+    showArrows?: boolean;
+    /**
+     * Show pagination dots
+     */
+    showDots?: boolean;
+    /**
+     * Custom class for the root container
+     */
+    className?: string;
+    /**
+     * Custom class for the slide container
+     */
+    slideClassName?: string;
+}
+/**
+ * DjCarousel is a premium slider component powered by Embla Carousel.
+ * It features buttery-smooth physics, touch/drag support, and customizable navigation.
+ */
+declare const DjCarousel: React__default.FC<DjCarouselProps>;
 
 interface InputProps extends React__default.InputHTMLAttributes<HTMLInputElement> {
     /**
@@ -547,4 +593,4 @@ interface FooterProps {
  */
 declare const Footer: ({ theme }: FooterProps) => react_jsx_runtime.JSX.Element;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type FooterProps, type HeaderProps, type InputProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, type SwitchProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, Input as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, Switch as djSwitch, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjSwitchProps, type FooterProps, type HeaderProps, type InputProps, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, Footer as djFooter, Header as djHeader, Input as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSwitch as djSwitch, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
