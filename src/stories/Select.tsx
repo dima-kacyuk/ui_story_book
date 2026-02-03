@@ -43,13 +43,18 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             className={cn(
               "w-full h-11 px-4 text-sm outline-none transition-all duration-300",
               "rounded-lg appearance-none cursor-pointer",
-              // Light Mode Default
-              "bg-white border-2 border-black hover:border-black focus:border-black text-black",
-              // Dark Mode Overrides
-              "dark:bg-slate-950 dark:border-slate-800 dark:hover:border-slate-700 dark:focus:border-white dark:text-gray-100",
-              // Theme prop overrides
+              // Base Styles (Light/Default)
+              "bg-white border-2 border-slate-200 hover:border-slate-300 focus:border-slate-900 text-slate-900",
+              
+              // Dark Mode (Applied if NOT forced light)
+              theme !== 'light' && "dark:bg-slate-950 dark:border-slate-800 dark:hover:border-slate-700 dark:focus:border-white dark:text-gray-100",
+              
+              // Forced Light Theme (High Contrast Black)
                theme === 'light' && "bg-white text-black border-2 border-black hover:border-black focus:border-black",
+               
+              // Forced Dark Theme (High Contrast White)
                theme === 'dark' && "bg-slate-950 text-white border-2 border-white hover:border-white focus:border-white",
+               
               className
             )}
             {...props}
