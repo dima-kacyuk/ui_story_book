@@ -413,11 +413,23 @@ interface SelectProps extends React__default.SelectHTMLAttributes<HTMLSelectElem
      * Explicit theme override
      */
     theme?: 'light' | 'dark';
+    /**
+     * Custom border color (overrides theme defaults)
+     */
+    borderColor?: string;
+    /**
+     * Custom background color (overrides theme defaults)
+     */
+    backgroundColor?: string;
+    /**
+     * Custom text color (overrides theme defaults)
+     */
+    textColor?: string;
 }
 /**
  * DjSelect is a custom-styled native select component that matches the premium input aesthetic.
  */
-declare const Select: React__default.ForwardRefExoticComponent<SelectProps & React__default.RefAttributes<HTMLSelectElement>>;
+declare const DjSelect: React__default.ForwardRefExoticComponent<SelectProps & React__default.RefAttributes<HTMLSelectElement>>;
 
 interface AvatarProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
@@ -739,4 +751,4 @@ interface DjFooterProps {
  */
 declare const DjFooter: React__default.FC<DjFooterProps>;
 
-export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjFooterProps, type DjHeaderProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, type FooterLink, type HeaderLink, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, DjFooter as djFooter, DjHeader as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, Select as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };
+export { AccordionContent, AccordionItem, type AccordionProps, AccordionTrigger, type AlertProps, type AvatarProps, type BadgeProps, CardBody, CardFooter, CardHeader, type CardProps, type CheckboxProps, type DatePickerProps, DialogAction, DialogCancel, type DialogProps, DialogTrigger, type DjButtonProps, type DjCarouselProps, type DjFooterProps, type DjHeaderProps, type DjInputProps, type DjSidebarMenuItem, type DjSidebarProps, type DjSwitchProps, type DjTableProps, type DjTableStyles, type FooterLink, type HeaderLink, ModalClose, type ModalProps, ModalTrigger, type ProgressProps, type RadioProps, type SelectProps, TabsContent, TabsList, type TabsProps, TabsTrigger, type TextareaProps, type ToasterProps, Accordion as djAccordion, Alert as djAlert, Avatar as djAvatar, Badge as djBadge, DjButton as djButton, Card as djCard, DjCarousel as djCarousel, Checkbox as djCheckbox, DatePicker as djDatePicker, Dialog as djDialog, DjFooter as djFooter, DjHeader as djHeader, DjInput as djInput, Modal as djModal, Progress as djProgress, Radio as djRadio, DjSelect as djSelect, DjSidebar as djSidebar, DjSwitch as djSwitch, DjTable as djTable, Tabs as djTabs, Textarea as djTextarea, djToast, Toaster as djToaster };

@@ -36,7 +36,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 /**
  * DjSelect is a custom-styled native select component that matches the premium input aesthetic.
  */
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+export const DjSelect = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ 
     className, 
     label, 
@@ -109,4 +109,4 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   }
 );
 
-Select.displayName = 'Select';
+DjSelect.displayName = 'DjSelect';

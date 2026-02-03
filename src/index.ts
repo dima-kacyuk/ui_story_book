@@ -12,7 +12,7 @@ export { Badge as djBadge } from "./stories/Badge";
 export { Card as djCard, CardHeader, CardBody, CardFooter } from "./stories/Card";
 export { Textarea as djTextarea } from "./stories/Textarea";
 export { Radio as djRadio } from "./stories/Radio";
-export { Select as djSelect } from "./stories/Select";
+export { DjSelect as djSelect } from "./stories/Select";
 export { Avatar as djAvatar } from "./stories/Avatar";
 export { DatePicker as djDatePicker } from "./stories/DatePicker";
 export { Modal as djModal, ModalTrigger, ModalClose } from "./stories/Modal";
