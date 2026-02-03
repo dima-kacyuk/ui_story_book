@@ -19,15 +19,46 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
    * Explicit theme override
    */
   theme?: 'light' | 'dark';
+  /**
+   * Custom border color (overrides theme defaults)
+   */
+  borderColor?: string;
+  /**
+   * Custom background color (overrides theme defaults)
+   */
+  backgroundColor?: string;
+  /**
+   * Custom text color (overrides theme defaults)
+   */
+  textColor?: string;
 }
 
 /**
  * DjSelect is a custom-styled native select component that matches the premium input aesthetic.
  */
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, helperText, theme, id: providedId, children, ...props }, ref) => {
+  ({ 
+    className, 
+    label, 
+    helperText, 
+    theme, 
+    id: providedId, 
+    children, 
+    borderColor,
+    backgroundColor,
+    textColor,
+    style,
+    ...props 
+  }, ref) => {
     const generatedId = useId();
     const id = providedId || generatedId;
+
+    const customStyles: React.CSSProperties = {
+      ...(borderColor ? { borderColor } : {}),
+      ...(backgroundColor ? { backgroundColor } : {}),
+      ...(textColor ? { color: textColor } : {}),
+      ...style,
+    };
 
     return (
       <div className={cn("flex flex-col gap-2 w-full", theme === 'dark' && 'dark', theme === 'light' && 'light')}>
@@ -40,6 +71,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           <select
             id={id}
             ref={ref}
+            style={customStyles}
             className={cn(
               "w-full h-11 px-4 text-sm outline-none transition-all duration-300",
               "rounded-lg appearance-none cursor-pointer",
