@@ -48,8 +48,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               // Dark Mode Overrides
               "dark:bg-slate-950 dark:border-slate-800 dark:hover:border-slate-700 dark:focus:border-white dark:text-gray-100",
               // Theme prop overrides
-               theme === 'light' && "bg-white text-slate-900 border-slate-200",
-               theme === 'dark' && "bg-slate-950 text-gray-100 border-slate-800",
+               theme === 'light' && "bg-white text-black border-2 border-black hover:border-black focus:border-black",
+               theme === 'dark' && "bg-slate-950 text-white border-2 border-white hover:border-white focus:border-white",
               className
             )}
             {...props}
