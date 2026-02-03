@@ -11,14 +11,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Light: Story = {
   render: (args) => (
-    <div className="w-80">
-      <Select {...args} label="Region" helperText="Determines currency and tax">
+    <div className="w-80 p-4 bg-gray-50">
+      <Select {...args} label="Light Theme Start" theme="light">
         <option value="us">United States</option>
         <option value="eu">European Union</option>
-        <option value="uk">United Kingdom</option>
-        <option value="jp">Japan</option>
+      </Select>
+    </div>
+  ),
+};
+
+export const Dark: Story = {
+  render: (args) => (
+    <div className="w-80 p-4 bg-slate-950">
+      <Select {...args} label="Dark Theme Start" theme="dark">
+        <option value="us">United States</option>
+        <option value="eu">European Union</option>
       </Select>
     </div>
   ),
